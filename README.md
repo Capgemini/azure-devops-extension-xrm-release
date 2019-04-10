@@ -1,8 +1,12 @@
 # Azure.DevOps.Extension.Xrm.Release
 
+**Build Status**: ![Build Status](https://capgeminiuk.visualstudio.com/GitHub%20Support/_apis/build/status/CI-Builds/Azure%20DevOps%20Extensions/devops-xrmrelease-extensions-CI-Build?branchName=master)
+
+**Release Status**: ![Release Status](https://capgeminiuk.vsrm.visualstudio.com/_apis/public/Release/badge/d743f9d4-7dae-476e-a963-f038f994a35d/2/4)
+
 ## Description
 
-The Azure.DevOps.Extension.Xrm.Release extension provides tasks for use in Azure DevOps build pipelines. These tasks enable a Continuous Deployment pipeline to be created for Dynamics 365.
+The Azure.DevOps.Extension.Xrm.Release extension provides tasks for use in Azure DevOps build pipelines. These tasks enable a Continuous Deployment pipeline to be created for Dynamics 365. For tasks for a build pipeline, please see [Azure.DevOps.Extension.Xrm.Build](https://github.com/Capgemini/azure-devops-extension-xrm-build).
 
 **Tasks:**
 
@@ -72,13 +76,17 @@ Enables or disables SLAs based on the PackageDeployer config.
 
 ## Contributing
 
-All contributions will be appreciated. 
+Source Code will be made available shortly. All contributions will be appreciated. 
 
 To contact us, please email [nuget.uk@capgemini.com](mailto:nuget.uk@capgemini.com).
 
 ## Credits
 
-Capgemini UK Microsoft Team
+Capgemini UK Microsoft Team:
+
+- [xrm-solutionaudit](https://github.com/Capgemini/xrm-solutionaudit)
+- [xrm-datamigration](https://github.com/Capgemini/xrm-datamigration)
+- [xrm-packagedeployer](https://github.com/Capgemini/xrm-packagedeployer)
 
 These tasks use the excellent [Microsoft.Xrm.Data.Powershell](https://github.com/seanmcne/Microsoft.Xrm.Data.PowerShell), by [seanmcne](https://github.com/seanmcne).
 
