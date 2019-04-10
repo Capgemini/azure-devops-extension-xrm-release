@@ -2,7 +2,7 @@
 
 ## Description
 
-Azure.DevOps.Extension.Xrm.Release provides tasks for use in Azure DevOps build pipelines. These tasks enable a Continuous Deployment pipeline to be created for Dynamics 365.
+The Azure.DevOps.Extension.Xrm.Release extension provides tasks for use in Azure DevOps build pipelines. These tasks enable a Continuous Deployment pipeline to be created for Dynamics 365.
 
 **Tasks:**
 
@@ -33,9 +33,9 @@ Navigate to and install [the extension](https://marketplace.visualstudio.com/ite
 
 ## Usage
 
-After installing, navigate to a new or existing Azure DevOps release pipeline, from there any of the following tasks should be available to be added and configured.
+After installing, navigate to a new or existing Azure DevOps release pipeline, from there the following tasks should be available to be added and configured.
 
-Below is a summary of each task, click on a header to view more information on [the wiki](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki).
+Below is a summary of each task, click on the task name to view more information on [the wiki](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki).
 
 ### [Dynamics 365: PackageDeployer Deployment](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-PackageDeployer-Deployment)
 Package deployer deployment using embeded powershell scripts.
@@ -84,4 +84,4 @@ These tasks use the excellent [Microsoft.Xrm.Data.Powershell](https://github.com
 
 ## License
 
-MIT
+[MIT](https://github.com/Capgemini/azure-devops-extension-xrm-release/blob/master/LICENSE)
