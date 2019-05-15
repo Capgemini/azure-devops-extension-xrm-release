@@ -60,7 +60,7 @@ Delete Dynamics 365 Solution.
 Deploy Dynamics 365 Solution managed or unmanaged using async import operation.
 
 ### [Dynamics 365: Audit Report Generator](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Audit-Report-Generator)
-Dynamics 365 Audit Report Generator.
+Generates detailed reports on components within a Dynamics 365 instance.
 
 ### [Dynamics 365: PackageDeployer Import Word Templates](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-PackageDeployer-Import-Word-Templates)
 Imports Word Templates to Dynamics 365 using PackageDeployer config file.
