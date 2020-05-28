@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7FE12518-A07C-4327-B01A-1ED498671D8E}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Capgemini.DevOps.VstsExtensions</RootNamespace>
+    <AssemblyName>Capgemini.DevOps.VstsExtensions</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Extensions\XrmRelease\icon.png" />
+    <Content Include="Extensions\XrmRelease\logo.png" />
+    <Content Include="Extensions\XrmRelease\Tasks\DeployCrmSolutionTask\ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Extensions\XrmRelease\overview.md" />
+    <None Include="Extensions\XrmRelease\Tasks\CrmPackageDeployerTask\CrmPackageDeployerTask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\CrmPackageDeployerTask\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\CrmPackageDeployerValidatorTask\CrmPackageDeployerValidatorTask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\CrmPackageDeployerValidatorTask\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\DataExporter\DataExporter.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\DataExporter\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\DataImporter\DataImporter.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\DataImporter\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\DeleteCrmSolutionTask\DeleteCrmSolutionTask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\DeleteCrmSolutionTask\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\DeployCrmSolutionTask\DeployCrmSolutionTask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\DeployCrmSolutionTask\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\DocumentationExporter\DocumentationExporter.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\DocumentationExporter\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\ImportWordTemplatesTask\ImportWordTemplatesTask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\ImportWordTemplatesTask\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\PublishCrmCustomizationsTask\PublishCrmCustomizationsTask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\PublishCrmCustomizationsTask\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\SyncProcessesTask\SyncProcessesTask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\SyncProcessesTask\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\SyncSLATask\SyncSLATask.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\SyncSLATask\task.json" />
+    <None Include="Extensions\XrmRelease\vss-extension.json" />
+    <None Include="VstsExtensionPackageGenerator.ps1" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <Target Name="Build">
+    <Exec Command="powershell -command &quot;&amp;'$(ProjectDir)VstsExtensionPackageGenerator.ps1' '$(ProjectDir)$(OutDir)' '$(ProjectDir)../../Libraries/' '$(ProjectDir)' '$(Configuration)' &quot;" />
+  </Target>
+</Project>

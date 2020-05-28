@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28729.10
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.DevOps.Extensions.XrmRelease", "Azure.DevOps.Extensions.XrmRelease\Azure.DevOps.Extensions.XrmRelease.csproj", "{7FE12518-A07C-4327-B01A-1ED498671D8E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{C1C03705-56FF-4A75-B7D4-1208C5C6BD11} = {C1C03705-56FF-4A75-B7D4-1208C5C6BD11}
+		{F8DA7F07-66D3-489C-879C-65EEEDB91DAA} = {F8DA7F07-66D3-489C-879C-65EEEDB91DAA}
+		{F486D91D-FB4A-443D-91E6-B0B8756A6EBE} = {F486D91D-FB4A-443D-91E6-B0B8756A6EBE}
+		{0115D478-2E14-40F3-929D-A1A404B087D3} = {0115D478-2E14-40F3-929D-A1A404B087D3}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule", "Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule\Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.csproj", "{C1C03705-56FF-4A75-B7D4-1208C5C6BD11}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.DevOps.Extensions.XrmRelease.Deployment.PowerShellModule", "Azure.DevOps.Extensions.XrmRelease.Deployment.PowerShellModule\Azure.DevOps.Extensions.XrmRelease.Deployment.PowerShellModule.csproj", "{F8DA7F07-66D3-489C-879C-65EEEDB91DAA}"
+EndProject
+Project("{F5034706-568F-408A-B7B3-4D38C6DB8A32}") = "Azure.DevOps.Extensions.XrmRelease.PowerShell", "Azure.DevOps.Extensions.XrmRelease.PowerShell\Azure.DevOps.Extensions.XrmRelease.PowerShell.pssproj", "{0115D478-2E14-40F3-929D-A1A404B087D3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.DevOps.Extensions.XrmRelease.Documentation.PowerShellModule", "Azure.DevOps.Extensions.XrmRelease.Documentation.PowerShellModule\Azure.DevOps.Extensions.XrmRelease.Documentation.PowerShellModule.csproj", "{F486D91D-FB4A-443D-91E6-B0B8756A6EBE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7FE12518-A07C-4327-B01A-1ED498671D8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FE12518-A07C-4327-B01A-1ED498671D8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FE12518-A07C-4327-B01A-1ED498671D8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FE12518-A07C-4327-B01A-1ED498671D8E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C1C03705-56FF-4A75-B7D4-1208C5C6BD11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C1C03705-56FF-4A75-B7D4-1208C5C6BD11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C1C03705-56FF-4A75-B7D4-1208C5C6BD11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C1C03705-56FF-4A75-B7D4-1208C5C6BD11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8DA7F07-66D3-489C-879C-65EEEDB91DAA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8DA7F07-66D3-489C-879C-65EEEDB91DAA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8DA7F07-66D3-489C-879C-65EEEDB91DAA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8DA7F07-66D3-489C-879C-65EEEDB91DAA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0115D478-2E14-40F3-929D-A1A404B087D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0115D478-2E14-40F3-929D-A1A404B087D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0115D478-2E14-40F3-929D-A1A404B087D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0115D478-2E14-40F3-929D-A1A404B087D3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F486D91D-FB4A-443D-91E6-B0B8756A6EBE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F486D91D-FB4A-443D-91E6-B0B8756A6EBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F486D91D-FB4A-443D-91E6-B0B8756A6EBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F486D91D-FB4A-443D-91E6-B0B8756A6EBE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A70F58F3-2524-43D7-A2FA-63B018D882D5}
+	EndGlobalSection
+EndGlobal
