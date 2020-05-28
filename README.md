@@ -14,11 +14,11 @@ The Azure.DevOps.Extension.Xrm.Release extension provides tasks for use in Azure
 * Dynamics 365: PackageDeployer Deployment Validator
 * Dynamics 365: Data Exporter
 * Dynamics 365: Data Importer
-* Dynamics 365: Delete Solution
-* Dynamics 365: Deploy Solution
+* Dynamics 365: Delete Solution (Deprecate and replace with https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/build-tools-overview)
+* Dynamics 365: Deploy Solution (Deprecate and replace with https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/build-tools-overview)
 * Dynamics 365: Audit Report Generator
 * Dynamics 365: PackageDeployer Import Word Templates
-* Dynamics 365: Publish All Customizations
+* Dynamics 365: Publish All Customizations (Deprecate and replace with https://docs.microsoft.com/en-us/powerapps/developer/common-data-service/build-tools-overview)
 * Dynamics 365: PackageDeployer Activate/Deactivate Processes
 * Dynamics 365: PackageDeployer Enable/Disable SLA
 
