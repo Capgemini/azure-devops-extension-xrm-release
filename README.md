@@ -6,7 +6,7 @@
 
 ## Description
 
-The Azure.DevOps.Extension.Xrm.Release extension provides tasks for use in Azure DevOps build pipelines. These tasks enable a Continuous Deployment pipeline to be created for Dynamics 365. For tasks for a build pipeline, please see [Azure.DevOps.Extension.Xrm.Build](https://github.com/Capgemini/azure-devops-extension-xrm-build).
+The Azure.DevOps.Extension.Xrm.Release extension provides tasks for use in Azure DevOps release pipelines. These tasks enable a Continuous Deployment pipeline to be created for Dynamics 365. For tasks for a build pipeline, please see [Azure.DevOps.Extension.Xrm.Build](https://github.com/Capgemini/azure-devops-extension-xrm-build).
 
 **Tasks:**
 
