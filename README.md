@@ -53,10 +53,10 @@ Dynamics 365 Data Exporter using Capgemini.Xrm.DataMigration Engine.
 ### [Dynamics 365: Data Importer](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Data-Importer)
 Dynamics 365 Data Importer using Capgemini.Xrm.DataMigration Engine.
 
-### [Dynamics 365: Delete Solution](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Delete-Solution)
+### [Dynamics 365: Delete Solution (Marked for Deprecation)](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Delete-Solution)
 Delete Dynamics 365 Solution.
 
-### [Dynamics 365: Deploy Solution](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Deploy-Solution)
+### [Dynamics 365: Deploy Solution (Marked for Deprecation)](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Deploy-Solution)
 Deploy Dynamics 365 Solution managed or unmanaged using async import operation.
 
 ### [Dynamics 365: Audit Report Generator](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Audit-Report-Generator)
@@ -65,7 +65,7 @@ Generates detailed reports on components within a Dynamics 365 instance.
 ### [Dynamics 365: PackageDeployer Import Word Templates](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-PackageDeployer-Import-Word-Templates)
 Imports Word Templates to Dynamics 365 using PackageDeployer config file.
 
-### [Dynamics 365: Publish All Customizations](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Publish-All-Customizations)
+### [Dynamics 365: Publish All Customizations (Marked for Deprecation)](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-Publish-All-Customizations)
 Publish All Customizations in the Dynamics 365 instance.
 
 ### [Dynamics 365: PackageDeployer Activate/Deactivate Processes](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki/Usage#Dynamics-365-PackageDeployer-ActivateDeactivate-Processes)
