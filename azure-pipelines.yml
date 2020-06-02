@@ -85,8 +85,7 @@ stages:
             extensionPricing: free
 
   - stage: PublishToPublicMarketPlace
-    displayName: Publish to Public MarketPlace
-    dependsOn: PublishtoPrivateMarketPlace
+    displayName: Publish to Public Feed
     condition: succeeded()
     jobs:
       - deployment:
@@ -94,7 +93,7 @@ stages:
         strategy:
           runOnce:
             deploy:
-              steps:       
+              steps:
               - task: ms-devlabs.vsts-developer-tools-build-tasks.publish-extension-build-task.PublishExtension@1
               displayName: 'Publish to Public MarketPlace'        
               inputs:
