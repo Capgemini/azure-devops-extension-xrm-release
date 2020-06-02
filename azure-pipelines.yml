@@ -94,15 +94,16 @@ stages:
           runOnce:
             deploy:
               steps:
-              - task: ms-devlabs.vsts-developer-tools-build-tasks.publish-extension-build-task.PublishExtension@1
-              displayName: 'Publish to Public MarketPlace'        
-              inputs:
-              connectedServiceName: 'Capgemini MarketPlace Publishers'
-              fileType: vsix
-              vsixFile: '$(Pipeline.Workspace)/drop/Azure.DevOps.Extensions.XrmRelease/Azure.DevOps.Extensions.XrmRelease/bin/Release/capgemini-uk.xrm-release-*.vsix'
-              publisherId: '$(publisher)'
-              extensionId: 'capgemini-xrm-release-extension'
-              extensionName: 'Capgemini Release Extension for Dynamics 365'
-              updateTasksVersion: false
-              extensionVisibility: public
-              extensionPricing: free
+              - task: PublishExtension@1
+                inputs:
+                  connectTo: 'VsTeam'
+                  connectedServiceName: 'Capgemini MarketPlace Publishers'
+                  fileType: 'vsix'
+                  vsixFile: '$(Pipeline.Workspace)/drop/Azure.DevOps.Extensions.XrmRelease/Azure.DevOps.Extensions.XrmRelease/bin/Release/capgemini-uk.xrm-release-*.vsix'
+                  publisherId: '$(publisher)'
+                  extensionId: 'capgemini-xrm-release-extension'
+                  extensionName: 'Capgemini Release Extension for Dynamics 365'
+                  updateTasksVersion: false
+                  extensionVisibility: 'private'
+                  extensionPricing: 'free'
+           
