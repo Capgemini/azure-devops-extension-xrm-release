@@ -67,10 +67,12 @@ stages:
     displayName: Publish to Private MarketPlace
     jobs:
       - job: PublishPrivateJob
-        displayName: Publish to Private MarketPlace
+        displayName: Publish to Private MarketPlace        
         steps:
         - task: ms-devlabs.vsts-developer-tools-build-tasks.publish-extension-build-task.PublishExtension@1
           displayName: 'Publish Extension'
+          download : current
+          checkout : none
           inputs:
             connectedServiceName: 'Capgemini MarketPlace Publishers'
             fileType: vsix
