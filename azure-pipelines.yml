@@ -104,6 +104,6 @@ stages:
                   extensionId: 'capgemini-xrm-release-extension'
                   extensionName: 'Capgemini Release Extension for Dynamics 365'
                   updateTasksVersion: false
-                  extensionVisibility: 'private'
+                  extensionVisibility: 'public'
                   extensionPricing: 'free'
            
