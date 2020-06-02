@@ -28,14 +28,14 @@ stages:
       - task: NuGetCommand@2
         displayName: 'NuGet restore'
         inputs:
-          restoreSolution: '$(Parameters.solution)'
+          restoreSolution: '$(solution)'
           feedsToUse: config
           nugetConfigPath: NuGet.config
 
       - task: VSBuild@1
         displayName: 'Build solution **\*.sln'
         inputs:
-          solution: '$(Parameters.solution)'
+          solution: '$(solution)'
           platform: '$(BuildPlatform)'
           configuration: '$(BuildConfiguration)'
 
