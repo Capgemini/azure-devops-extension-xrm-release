@@ -13,6 +13,7 @@ variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  publisher: 'capgemini-msft-uk'
 
 stages:
   - stage: Build
@@ -61,4 +62,22 @@ stages:
         displayName: 'Publish Artifact: drop'
         inputs:
           PathtoPublish: '$(build.artifactstagingdirectory)'
-    
+
+  - stage: PublishtoPrivateMarketPlace
+    displayName: Publish to Private MarketPlace
+    jobs:
+      - job: PublishPrivateJob
+        displayName: Publish to Private MarketPlace
+        steps:
+        - task: ms-devlabs.vsts-developer-tools-build-tasks.publish-extension-build-task.PublishExtension@1
+          displayName: 'Publish Extension'
+          inputs:
+            connectedServiceName: 'Capgemini MarketPlace Publishers'
+            fileType: vsix
+            vsixFile: '$(Pipeline.Workspace)/VSIX/drop/Azure.DevOps.Extensions.XrmRelease/Azure.DevOps.Extensions.XrmRelease/bin/Release/capgemini-uk.xrm-release-*.vsix'
+            publisherId: '$(publisher)-dev'
+            extensionId: 'capgemini-xrm-release-extension'
+            extensionName: 'Capgemini Release Extension for Dynamics 365'
+            updateTasksVersion: false
+            extensionVisibility: private
+            extensionPricing: free  
