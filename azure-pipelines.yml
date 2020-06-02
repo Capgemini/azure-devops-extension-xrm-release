@@ -76,7 +76,7 @@ stages:
           inputs:
             connectedServiceName: 'Capgemini MarketPlace Publishers'
             fileType: vsix
-            vsixFile: '$(Pipeline.Workspace)/Azure.DevOps.Extensions.XrmRelease/Azure.DevOps.Extensions.XrmRelease/bin/Release/capgemini-uk.xrm-release-*.vsix'
+            vsixFile: '$(Pipeline.Workspace)/drop/Azure.DevOps.Extensions.XrmRelease/Azure.DevOps.Extensions.XrmRelease/bin/Release/capgemini-uk.xrm-release-*.vsix'
             publisherId: '$(publisher)-dev'
             extensionId: 'capgemini-xrm-release-extension'
             extensionName: 'Capgemini Release Extension for Dynamics 365'
