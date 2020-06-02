@@ -89,8 +89,7 @@ stages:
     dependsOn: PublishtoPrivateMarketPlace
     condition: succeeded()
     jobs:
-      - deployment:
-        environment: 'nuget-org'
+      - deployment:      
         strategy:
           runOnce:
             deploy:
