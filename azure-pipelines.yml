@@ -14,21 +14,49 @@ variables:
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
 
-steps:
-- task: NuGetToolInstaller@1
+stages:
+  - stage: Build
+    jobs:
+    - job: BuildJob
+      displayName: Build
+      steps:
+      - task: NuGetToolInstaller@0
+        displayName: 'Use NuGet 5.2.0'
+        inputs:
+          versionSpec: 5.2.0
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+      - task: NuGetCommand@2
+        displayName: 'NuGet restore'
+        inputs:
+          restoreSolution: '$(Parameters.solution)'
+          feedsToUse: config
+          nugetConfigPath: NuGet.config
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+      - task: VSBuild@1
+        displayName: 'Build solution **\*.sln'
+        inputs:
+          solution: '$(Parameters.solution)'
+          platform: '$(BuildPlatform)'
+          configuration: '$(BuildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+      - task: VSTest@2
+        displayName: 'VsTest - testAssemblies'
+        inputs:
+          testAssemblyVer2: |
+          **\$(BuildConfiguration)\*test*.dll 
+          !**\obj\**
+          platform: '$(BuildPlatform)'
+          configuration: '$(BuildConfiguration)'
+          diagnosticsEnabled: True
+
+      - task: CopyFiles@2
+        displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
+        inputs:
+          SourceFolder: '$(system.defaultworkingdirectory)'
+          Contents: '**\bin\$(BuildConfiguration)\**'
+          TargetFolder: '$(build.artifactstagingdirectory)'
+
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish Artifact: drop'
+        inputs:
+          PathtoPublish: '$(build.artifactstagingdirectory)'
