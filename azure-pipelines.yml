@@ -42,12 +42,13 @@ stages:
       - task: VSTest@2
         displayName: 'VsTest - testAssemblies'
         inputs:
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+          codeCoverageEnabled: true
           testAssemblyVer2: |
-          **\$(BuildConfiguration)\*test*.dll 
-          !**\obj\**
-          platform: '$(BuildPlatform)'
-          configuration: '$(BuildConfiguration)'
-          diagnosticsEnabled: True
+             **\*Tests*.dll
+             !**\*Integration*.dll
+             !**\obj\**
 
       - task: CopyFiles@2
         displayName: 'Copy Files to: $(build.artifactstagingdirectory)'
@@ -60,3 +61,4 @@ stages:
         displayName: 'Publish Artifact: drop'
         inputs:
           PathtoPublish: '$(build.artifactstagingdirectory)'
+    
