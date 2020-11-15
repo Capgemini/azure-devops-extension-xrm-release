@@ -15,30 +15,30 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
             _cmdlet = cmdlet;
         }
 
-        public void Error(string message)
+        public void LogError(string message)
         {
-            Error(message, new Exception(message));
+            LogError(message, new Exception(message));
         }
 
-        public void Error(string message, Exception ex)
+        public void LogError(string message, Exception ex)
         {
             _cmdlet.WriteError(new ErrorRecord(ex, message, ErrorCategory.SyntaxError, _cmdlet));
         }
 
-        public void Info(string message)
+        public void LogInfo(string message)
         {
             _cmdlet.Host.UI.WriteLine(message);
         }
 
-        public void Verbose(string message)
+        public void LogVerbose(string message)
         {
             _cmdlet.WriteVerbose(message);
         }
 
-        public void Warning(string message)
+        public void LogWarning(string message)
         {
             if (_treatWarningsAsErrors)
-                Error(message);
+                LogError(message);
             else
                 _cmdlet.WriteWarning(message);
         }

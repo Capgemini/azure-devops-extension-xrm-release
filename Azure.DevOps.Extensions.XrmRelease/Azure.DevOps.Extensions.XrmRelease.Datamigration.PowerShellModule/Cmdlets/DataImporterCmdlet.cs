@@ -49,7 +49,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
             var logger = new CmdletLogger(TreatWarningsAsErrors);
             try
             {
-                logger.Info("About to start importing data from Dynamics365");
+                logger.LogInfo("About to start importing data from Dynamics365");
                 var manager = new Dynamics365DataManager();
 
                 var cancellationTokenSource = new CancellationTokenSource();
@@ -84,11 +84,11 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
                         throw new ConfigurationException("Schema file is required for CSV Import!");
 
                     schemaConfig = CrmSchemaConfiguration.ReadFromFile(SchemaFilePath);
-                    logger.Info("Using Csv import");
+                    logger.LogInfo("Using Csv import");
                 }
                 else
                 {
-                    logger.Info("Using JSon import");
+                    logger.LogInfo("Using JSon import");
                 }
 
                 if (MaxThreads > 1)
@@ -96,7 +96,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
                     var result = manager.StartImport(importConfig, logger, cancellationTokenSource, ConnectionString, MaxThreads, CsvImport, schemaConfig)
                                         .ContinueWith(a =>
                                         {
-                                            logger.Info("Dynamics365 data import completed successfully.");
+                                            logger.LogInfo("Dynamics365 data import completed successfully.");
                                         },
                                                             cancellationTokenSource.Token);
 
@@ -110,8 +110,8 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
             catch (Exception exception)
             {
                 var errorMessage = $"Dynamics365 data import failed: {exception.Message}";
-                logger.Verbose(errorMessage);
-                logger.Error(errorMessage);
+                logger.LogVerbose(errorMessage);
+                logger.LogError(errorMessage);
                 throw;
             }
         }

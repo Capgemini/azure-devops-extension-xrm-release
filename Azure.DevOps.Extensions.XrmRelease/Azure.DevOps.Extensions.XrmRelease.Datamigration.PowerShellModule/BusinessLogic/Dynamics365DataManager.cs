@@ -29,7 +29,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Busi
         {
             var connectionHelper = new ConnectionHelper();
             var orgService = connectionHelper.GetOrganizationalService(connectionString);
-            logger.Info("Connectd to instance " + connectionString);
+            logger.LogInfo("Connectd to instance " + connectionString);
             var entityRepo = new EntityRepository(orgService, new ServiceRetryExecutor());
 
             var fileExporter = new CrmFileDataExporter(logger, entityRepo, exportConfig, cancellationToken.Token);
@@ -40,7 +40,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Busi
         {
             var importTask = Task.Run(() =>
             {
-                logger.Info("Connectd to instance " + connectionString);
+                logger.LogInfo("Connectd to instance " + connectionString);
 
                 if (maxThreads > 1 && !string.IsNullOrWhiteSpace(connectionString))
                 {
@@ -58,7 +58,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Busi
         private static void StartMultiThreadedImport(CrmImportConfig importConfig, ILogger logger, CancellationTokenSource cancellationToken, string connectionString, int maxThreads, bool useCsv, CrmSchemaConfiguration schemaConfig)
         {
             var connectionHelper = new ConnectionHelper();
-            logger.Info($"Starting MultiThreaded Processing, using {maxThreads} threads");
+            logger.LogInfo($"Starting MultiThreaded Processing, using {maxThreads} threads");
             var repos = new List<IEntityRepository>();
             var cnt = Convert.ToInt32(maxThreads);
 
@@ -66,7 +66,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Busi
             {
                 cnt--;
                 repos.Add(new EntityRepository(connectionHelper.GetOrganizationalService(connectionString), new ServiceRetryExecutor()));
-                logger.Info("New connection created to " + connectionString);
+                logger.LogInfo("New connection created to " + connectionString);
             }
 
             CrmGenericImporter fileImporter = null;
@@ -83,7 +83,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Busi
             var connectionHelper = new ConnectionHelper();
             var orgService = connectionHelper.GetOrganizationalService(connectionString);
 
-            logger.Info("Starting Single Threaded processing, you must configure connection string for multithreaded processing adn set up max threads to more than 1");
+            logger.LogInfo("Starting Single Threaded processing, you must configure connection string for multithreaded processing adn set up max threads to more than 1");
             var entityRepo = new EntityRepository(orgService, new ServiceRetryExecutor());
 
             CrmGenericImporter fileImporter = null;

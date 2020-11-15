@@ -45,7 +45,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
             var logger = new CmdletLoggerPS(this, TreatWarningsAsErrors);
             try
             {
-                logger.Info("About to start exporting data from Dynamics365");
+                logger.LogInfo("About to start exporting data from Dynamics365");
                 var manager = new Dynamics365DataManager();
 
                 var cancellationTokenSource = new CancellationTokenSource();
@@ -88,14 +88,14 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
                 }
 
                 manager.StartSingleThreadedExport(exportConfig, logger, cancellationTokenSource, ConnectionString);
-                logger.Info("Export has finished");
+                logger.LogInfo("Export has finished");
 
             }
             catch (Exception exception)
             {
                 var errorMessage = $"Dynamics365 data export failed: {exception.Message}";
-                logger.Verbose(errorMessage);
-                logger.Error(errorMessage);
+                logger.LogVerbose(errorMessage);
+                logger.LogError(errorMessage);
                 throw;
             }
         }

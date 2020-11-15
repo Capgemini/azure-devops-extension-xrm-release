@@ -31,32 +31,33 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
             _logger.Debug($"{eventType}:{message}", ex);
         }
 
-        public void Error(string message)
+        public void LogError(string message)
         {
             _logger.Error(message);
         }
 
-        public void Error(string message, Exception ex)
+        public void LogError(string message, Exception ex)
         {
             _logger.Error(message, ex);
         }
 
-        public void Info(string message)
+        public void LogInfo(string message)
         {
             _logger.Info(message);
         }
 
-        public void Verbose(string message)
+        public void LogVerbose(string message)
         {
             _logger.Debug(message);
         }
 
-        public void Warning(string message)
+        public void LogWarning(string message)
         {
             if (_treatWarningsAsErrors)
-                Error(message);
+                LogError(message);
             else
                 _logger.Warn(message);
         }
+
     }
 }
