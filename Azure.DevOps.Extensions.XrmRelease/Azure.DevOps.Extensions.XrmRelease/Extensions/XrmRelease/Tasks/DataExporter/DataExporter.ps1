@@ -12,7 +12,7 @@ param(
         [PSObject][Parameter(Mandatory=$true)] $onlyActive,
 		[string][Parameter(Mandatory=$false)] $configFilePath,
 		[PSObject][Parameter(Mandatory=$true)] $treatWarningsAsErrors,
-		[PSObject][Parameter(Mandatory=$true)] $useCsv,
+		[PSObject][Parameter(Mandatory=$true)] $useCsv
 )
 
 $ErrorActionPreference = "Stop"
