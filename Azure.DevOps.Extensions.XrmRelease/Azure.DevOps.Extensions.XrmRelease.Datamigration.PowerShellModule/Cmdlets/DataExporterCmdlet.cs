@@ -122,7 +122,8 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
 
         private void PopulateConfiguration(CrmExporterConfig exportConfig)
         {
-            exportConfig.CrmMigrationToolSchemaPaths = new List<string> { SchemaFilePath };
+            exportConfig.CrmMigrationToolSchemaPaths.Clear();
+            exportConfig.CrmMigrationToolSchemaPaths.Add(SchemaFilePath);
             exportConfig.BatchSize = BatchSize;
             exportConfig.PageSize = PageSize;
             exportConfig.TopCount = TopCount;
