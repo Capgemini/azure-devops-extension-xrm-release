@@ -6,6 +6,8 @@ using System.IO;
 using System.Linq;
 using System.Management.Automation;
 using System.Threading;
+using Capgemini.Xrm.DataMigration.Config;
+using System.Configuration;
 
 namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdlets
 {
@@ -38,6 +40,9 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
 
         [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 8, HelpMessage = "Treat Warnings as Errors")]
         public bool TreatWarningsAsErrors { get; set; }
+
+        [Parameter(Mandatory = false, ValueFromPipelineByPropertyName = true, Position = 9, HelpMessage = "Use Csv Export")]
+        public bool CsvExport { get; set; }
 
         protected override void ProcessRecord()
         {
@@ -87,7 +92,22 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
 
                 }
 
-                manager.StartSingleThreadedExport(exportConfig, logger, cancellationTokenSource, ConnectionString);
+                CrmSchemaConfiguration schemaConfig = null;
+
+                if (CsvExport)
+                {
+                    if (string.IsNullOrWhiteSpace(SchemaFilePath))
+                        throw new ConfigurationErrorsException("Schema file is required for CSV Export!");
+
+                    schemaConfig = CrmSchemaConfiguration.ReadFromFile(SchemaFilePath);
+                    logger.LogInfo("Using Csv Export");
+                }
+                else
+                {
+                    logger.LogInfo("Using JSon Export");
+                }
+
+                manager.StartSingleThreadedExport(exportConfig, logger, cancellationTokenSource, ConnectionString, CsvExport, schemaConfig);
                 logger.LogInfo("Export has finished");
 
             }

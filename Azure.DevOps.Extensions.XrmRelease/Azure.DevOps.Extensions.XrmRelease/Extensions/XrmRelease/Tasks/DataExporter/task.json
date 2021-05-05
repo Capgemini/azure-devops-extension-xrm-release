@@ -11,7 +11,7 @@
   "author": "capgemini-uk",
   "version": {
     "Major": 0,
-    "Minor": 11,
+    "Minor": 12,
     "Patch": 0
   },
   "demands": [
@@ -92,6 +92,14 @@
       "defaultValue": "false",
       "required": true,
       "helpMarkDown": "A flag to determine whether warnings should be treated as errors."
+    },
+    {
+      "name": "useCsv",
+      "type": "boolean",
+      "label": "Use CSV",
+      "defaultValue": "false",
+      "required": true,
+      "helpMarkDown": "Flag that determines if the export is to use CSV files instead of JSON."
     }
   ],
   "instanceNameFormat": "Export Data Package $(jsonFolderPath)",
