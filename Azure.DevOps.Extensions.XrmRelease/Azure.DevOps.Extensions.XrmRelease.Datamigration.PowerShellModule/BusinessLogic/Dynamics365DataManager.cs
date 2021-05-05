@@ -15,25 +15,33 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Busi
 {
     public class Dynamics365DataManager
     {
-        public async Task StartExport(CrmExporterConfig exportConfig, ILogger logger, CancellationTokenSource cancellationToken, string connectionString)
+        public async Task StartExport(CrmExporterConfig exportConfig, ILogger logger, CancellationTokenSource cancellationToken, string connectionString, bool useCsv, CrmSchemaConfiguration schemaConfig)
         {
             var exportTask = Task.Run(() =>
             {
-                StartSingleThreadedExport(exportConfig, logger, cancellationToken, connectionString);
+                StartSingleThreadedExport(exportConfig, logger, cancellationToken, connectionString, useCsv, schemaConfig);
             });
 
             await exportTask;
         }
 
-        public void StartSingleThreadedExport(CrmExporterConfig exportConfig, ILogger logger, CancellationTokenSource cancellationToken, string connectionString)
+        public void StartSingleThreadedExport(CrmExporterConfig exportConfig, ILogger logger, CancellationTokenSource cancellationToken, string connectionString, bool useCsv, CrmSchemaConfiguration schemaConfig)
         {
             var connectionHelper = new ConnectionHelper();
             var orgService = connectionHelper.GetOrganizationalService(connectionString);
             logger.LogInfo("Connectd to instance " + connectionString);
             var entityRepo = new EntityRepository(orgService, new ServiceRetryExecutor());
 
-            var fileExporter = new CrmFileDataExporter(logger, entityRepo, exportConfig, cancellationToken.Token);
-            fileExporter.MigrateData();
+            if (useCsv)
+            {
+                var fileExporter = new CrmFileDataExporterCsv(logger, entityRepo, exportConfig, schemaConfig, cancellationToken.Token);
+                fileExporter.MigrateData();
+            }
+            else
+            {
+                var fileExporter = new CrmFileDataExporter(logger, entityRepo, exportConfig, cancellationToken.Token);
+                fileExporter.MigrateData();
+            }
         }
 
         public async Task StartImport(CrmImportConfig importConfig, ILogger logger, CancellationTokenSource cancellationToken, string connectionString, int maxThreads, bool useCsv, CrmSchemaConfiguration schemaConfig)
