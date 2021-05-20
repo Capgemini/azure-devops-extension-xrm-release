@@ -1,18 +1,24 @@
 {
-  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
-  "id": "8c9b5c45-7b61-4565-acde-65d7b492485a",
-  "name": "Dynamics-clean-audit-logs",
-  "friendlyName": "Dynamics - Clean audit logs",
-  "description": "Removes audit logs from a specified date",
-  "helpMarkDown": "",
+  "id": "7ddb5ae4-68ee-4fac-87ab-701c5e23b9cd",
+  "name": "DeleteAuditLogsTask",
+  "friendlyName": "Dynamics 365: DeleteAuditLogsTask",
+  "description": "Removes audit logs upto a specified date",
   "category": "Utility",
+  "visibility": [
+    "Release"
+  ],
   "author": "capgemini-uk",
   "version": {
     "Major": 1,
     "Minor": 0,
     "Patch": 0
   },
-  "instanceNameFormat": "Clean audit logs",
+  "demands": [
+  ],
+  "minimumAgentVersion": "1.83.0",
+  "groups": [
+
+  ],
   "inputs": [
     {
       "name": "clientId",
@@ -47,9 +53,12 @@
       "helpMarkDown": "Remove audit logs up to this date"
     }
   ],
+  "instanceNameFormat": "Clean audit logs",
   "execution": {
     "PowerShell": {
-      "target": "$(currentDirectory)\\DeleteAuditLogs.ps1"
+      "target": "$(currentDirectory)\\DeleteAuditLogs.ps1",
+      "argumentFormat": "",
+      "workingDirectory": "$(currentDirectory)"
     }
   }
 }
