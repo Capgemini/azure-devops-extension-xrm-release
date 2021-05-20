@@ -48,6 +48,9 @@ Activates or Deactivates Dynamics 365 processes based on the PackageDeployer con
 
 Enables or disables SLAs based on the PackageDeployer config.
 
+### Dynamics 365: Delete Audit Logs
+Deletes audit logs up to a specified date, releasing storage capacity
+
 ### More Information
 
 More information can be found in our [GitHub Wiki](https://github.com/Capgemini/azure-devops-extension-xrm-release/wiki).

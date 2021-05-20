@@ -57,6 +57,8 @@
     <None Include="Extensions\XrmRelease\Tasks\DataExporter\task.json" />
     <None Include="Extensions\XrmRelease\Tasks\DataImporter\DataImporter.ps1" />
     <None Include="Extensions\XrmRelease\Tasks\DataImporter\task.json" />
+    <None Include="Extensions\XrmRelease\Tasks\DeleteAuditLogsTask\DeleteAuditLogs.ps1" />
+    <None Include="Extensions\XrmRelease\Tasks\DeleteAuditLogsTask\task.json" />
     <None Include="Extensions\XrmRelease\Tasks\DeleteCrmSolutionTask\DeleteCrmSolutionTask.ps1" />
     <None Include="Extensions\XrmRelease\Tasks\DeleteCrmSolutionTask\task.json" />
     <None Include="Extensions\XrmRelease\Tasks\DeployCrmSolutionTask\DeployCrmSolutionTask.ps1" />

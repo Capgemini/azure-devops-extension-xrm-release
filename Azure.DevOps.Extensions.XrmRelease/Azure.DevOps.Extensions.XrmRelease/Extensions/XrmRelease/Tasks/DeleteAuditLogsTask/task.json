@@ -1,0 +1,55 @@
+{
+  "$schema": "https://raw.githubusercontent.com/Microsoft/azure-pipelines-task-lib/master/tasks.schema.json",
+  "id": "8c9b5c45-7b61-4565-acde-65d7b492485a",
+  "name": "Dynamics-clean-audit-logs",
+  "friendlyName": "Dynamics - Clean audit logs",
+  "description": "Removes audit logs from a specified date",
+  "helpMarkDown": "",
+  "category": "Utility",
+  "author": "capgemini-uk",
+  "version": {
+    "Major": 1,
+    "Minor": 0,
+    "Patch": 0
+  },
+  "instanceNameFormat": "Clean audit logs",
+  "inputs": [
+    {
+      "name": "clientId",
+      "type": "string",
+      "label": "Client Id",
+      "defaultValue": "$(clientId)",
+      "required": true,
+      "helpMarkDown": "The registered clientId for User from Azure AD"
+    },
+    {
+      "name": "clientSecret",
+      "type": "string",
+      "label": "Client Secret",
+      "defaultValue": "$(clientSecret)",
+      "required": true,
+      "helpMarkDown": "The generated secret for the clientId"
+    },
+    {
+      "name": "url",
+      "type": "string",
+      "label": "Dynamics365 URL",
+      "defaultValue": "$(dynamicsUrl)",
+      "required": true,
+      "helpMarkDown": "The URL for the target Dynamics365 instance"
+    },
+    {
+      "name": "auditLogCreatedBeforeDays",
+      "type": "string",
+      "label": "End date for audit log deletion",
+      "defaultValue": "",
+      "required": true,
+      "helpMarkDown": "Remove audit logs up to this date"
+    }
+  ],
+  "execution": {
+    "PowerShell": {
+      "target": "$(currentDirectory)\\DeleteAuditLogs.ps1"
+    }
+  }
+}
