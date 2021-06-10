@@ -1514,14 +1514,6 @@ There are two ways to specify records.
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
-				<maml:name>SecurityRoleName</maml:name>
-				<maml:description>
-					<maml:para>A name of security role record
-</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
 		</command:syntaxItem>
 		<command:syntaxItem>
 			<maml:name>Add-CrmSecurityRoleToUser</maml:name>
@@ -1545,14 +1537,6 @@ There are two ways to specify records.
 				<maml:name>SecurityRoleId</maml:name>
 				<maml:description>
 					<maml:para>An Id (guid) of security role record
-</maml:para>
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
-				<maml:name>SecurityRoleName</maml:name>
-				<maml:description>
-					<maml:para>A name of security role record
 </maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
@@ -1595,19 +1579,6 @@ There are two ways to specify records.
 			<command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
 			<dev:type>
 				<maml:name>PSObject</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
-			<maml:name>SecurityRoleName</maml:name>
-			<maml:description>
-				<maml:para>A name of security role record
-</maml:para>
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
 				<maml:uri/>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
@@ -1990,51 +1961,221 @@ You can use Get-Credential to create Credential information.</maml:para>
 		<command:syntaxItem>
 			<maml:name>Connect-CrmOnline</maml:name>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
-				<maml:name>Credential</maml:name>
+				<maml:name>ConnectionString</maml:name>
 				<maml:description>
-					<maml:para>A PS-Credential. You can invoke Get-Credential.</maml:para>
+					<maml:para>Override the connectionstring used to connect to the instance, this can be used to debug scenarios or accomidate new options that may not be supported in the mainstream module. Please proceed with caution using this parameter as it could be removed in the future or may cause unintended consequences when used in combination with connection string parameters that are unexpected. </maml:para>
 				</maml:description>
-				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>ConnectionTimeoutInSeconds</maml:name>
+				<maml:description>
+					<maml:para>Integer value for the connection timeout in seconds</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>LogWriteDirectory</maml:name>
+				<maml:description>
+					<maml:para>Override the directory location to store the Xrm.Tooling.Connector log files. The directory must already exist, and the user who is running the cmdlet must have Write permission to the directory. You must also use the -Verbose parameter along with the -LogWriteDirectory parameter to be able to store the log files in a custom location.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>BypassTokenCache</maml:name>
+				<maml:description>
+					<maml:para>Will bypass using a local cache path, this is most commonly used in conjunction with build pipelines in azure dev ops or limited access environments</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Connect-CrmOnline</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
 				<maml:name>ServerUrl</maml:name>
 				<maml:description>
 					<maml:para>A Url of your Dynamics CRM Online organization.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
 				<maml:name>ForceDiscovery</maml:name>
 				<maml:description>
 					<maml:para>Forces the connector to verify an org connection with discovery (NOT COMPATIBLE with Partner CSP). </maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
 				<maml:name>ForceOAuth</maml:name>
 				<maml:description>
-					<maml:para>Forces oAuth authentication via Azure Active Directory. The default auth type is Office365. </maml:para>
+					<maml:para>Forces oAuth authentication via Azure Active Directory. If a credential is not provided, then Single Sign on will be attempted, if you wish to use a credential that is not your currently signed in user you may provide a credential.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
 				<maml:name>OAuthClientId</maml:name>
 				<maml:description>
 					<maml:para>Azure Active Directory Native Application Id</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="6">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
 				<maml:name>OAuthRedirectUri</maml:name>
 				<maml:description>
-					<maml:para>Azure Active Directory Native Application Id&#39;s Redirect URI </maml:para>
+					<maml:para>Azure Active Directory Redirect Uri (Must match the Applications redirect uri) </maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
+				<maml:name>Username</maml:name>
+				<maml:description>
+					<maml:para>This should be used when needing to provide a username hint to ADAL, this will ensure the correct identity is used to attempt acquring a token. </maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>ConnectionTimeoutInSeconds</maml:name>
+				<maml:description>
+					<maml:para>Integer value for the connection timeout in seconds</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>LogWriteDirectory</maml:name>
+				<maml:description>
+					<maml:para>Override the directory location to store the Xrm.Tooling.Connector log files. The directory must already exist, and the user who is running the cmdlet must have Write permission to the directory. You must also use the -Verbose parameter along with the -LogWriteDirectory parameter to be able to store the log files in a custom location.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>BypassTokenCache</maml:name>
+				<maml:description>
+					<maml:para>Will bypass using a local cache path, this is most commonly used in conjunction with build pipelines in azure dev ops or limited access environments</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Connect-CrmOnline</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>ServerUrl</maml:name>
+				<maml:description>
+					<maml:para>A Url of your Dynamics CRM Online organization.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>Credential</maml:name>
+				<maml:description>
+					<maml:para>A PS-Credential. You can invoke Get-Credential.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>ForceDiscovery</maml:name>
+				<maml:description>
+					<maml:para>Forces the connector to verify an org connection with discovery (NOT COMPATIBLE with Partner CSP). </maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+				<maml:name>ForceOAuth</maml:name>
+				<maml:description>
+					<maml:para>Forces oAuth authentication via Azure Active Directory. If a credential is not provided, then Single Sign on will be attempted, if you wish to use a credential that is not your currently signed in user you may provide a credential.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
+				<maml:name>OAuthClientId</maml:name>
+				<maml:description>
+					<maml:para>Azure Active Directory Native Application Id</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
+				<maml:name>OAuthRedirectUri</maml:name>
+				<maml:description>
+					<maml:para>Azure Active Directory Redirect Uri (Must match the Applications redirect uri) </maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>ConnectionTimeoutInSeconds</maml:name>
+				<maml:description>
+					<maml:para>Integer value for the connection timeout in seconds</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>LogWriteDirectory</maml:name>
+				<maml:description>
+					<maml:para>Override the directory location to store the Xrm.Tooling.Connector log files. The directory must already exist, and the user who is running the cmdlet must have Write permission to the directory. You must also use the -Verbose parameter along with the -LogWriteDirectory parameter to be able to store the log files in a custom location.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>BypassTokenCache</maml:name>
+				<maml:description>
+					<maml:para>Will bypass using a local cache path, this is most commonly used in conjunction with build pipelines in azure dev ops or limited access environments</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Connect-CrmOnline</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>ServerUrl</maml:name>
+				<maml:description>
+					<maml:para>A Url of your Dynamics CRM Online organization.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
+				<maml:name>OAuthClientId</maml:name>
+				<maml:description>
+					<maml:para>Azure Active Directory Native Application Id</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
+				<maml:name>OAuthRedirectUri</maml:name>
+				<maml:description>
+					<maml:para>Azure Active Directory Redirect Uri (Must match the Applications redirect uri) </maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="4">
+				<maml:name>ClientSecret</maml:name>
+				<maml:description>
+					<maml:para>Client Secret value when using AzureAD ClientSecret auth and an application user</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>ConnectionTimeoutInSeconds</maml:name>
+				<maml:description>
+					<maml:para>Integer value for the connection timeout in seconds</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>LogWriteDirectory</maml:name>
+				<maml:description>
+					<maml:para>Override the directory location to store the Xrm.Tooling.Connector log files. The directory must already exist, and the user who is running the cmdlet must have Write permission to the directory. You must also use the -Verbose parameter along with the -LogWriteDirectory parameter to be able to store the log files in a custom location.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>BypassTokenCache</maml:name>
+				<maml:description>
+					<maml:para>Will bypass using a local cache path, this is most commonly used in conjunction with build pipelines in azure dev ops or limited access environments</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			</command:parameter>
 		</command:syntaxItem>
 	</command:syntax>
 	<command:parameters>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
 			<maml:name>Credential</maml:name>
 			<maml:description>
 				<maml:para>A PS-Credential. You can invoke Get-Credential.</maml:para>
@@ -2044,9 +2185,9 @@ You can use Get-Credential to create Credential information.</maml:para>
 				<maml:name>PSCredential</maml:name>
 				<maml:uri/>
 			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
+			<dev:defaultValue>Get-Credential</dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
 			<maml:name>ServerUrl</maml:name>
 			<maml:description>
 				<maml:para>A Url of your Dynamics CRM Online organization.</maml:para>
@@ -2058,7 +2199,7 @@ You can use Get-Credential to create Credential information.</maml:para>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
 			<maml:name>ForceDiscovery</maml:name>
 			<maml:description>
 				<maml:para>Forces the connector to verify an org connection with discovery (NOT COMPATIBLE with Partner CSP). </maml:para>
@@ -2070,10 +2211,10 @@ You can use Get-Credential to create Credential information.</maml:para>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
 			<maml:name>ForceOAuth</maml:name>
 			<maml:description>
-				<maml:para>Forces oAuth authentication via Azure Active Directory. The default auth type is Office365. </maml:para>
+				<maml:para>Forces oAuth authentication via Azure Active Directory. If a credential is not provided, then Single Sign on will be attempted, if you wish to use a credential that is not your currently signed in user you may provide a credential.</maml:para>
 			</maml:description>
 			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			<dev:type>
@@ -2082,7 +2223,7 @@ You can use Get-Credential to create Credential information.</maml:para>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
 			<maml:name>OAuthClientId</maml:name>
 			<maml:description>
 				<maml:para>Azure Active Directory Native Application Id</maml:para>
@@ -2094,14 +2235,86 @@ You can use Get-Credential to create Credential information.</maml:para>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="6">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
 			<maml:name>OAuthRedirectUri</maml:name>
 			<maml:description>
-				<maml:para>Azure Active Directory Native Application Id&#39;s Redirect URI </maml:para>
+				<maml:para>Azure Active Directory Redirect Uri (Must match the Applications redirect uri) </maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="4">
+			<maml:name>ClientSecret</maml:name>
+			<maml:description>
+				<maml:para>Client Secret value when using AzureAD ClientSecret auth and an application user</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<maml:name>ConnectionString</maml:name>
+			<maml:description>
+				<maml:para>Override the connectionstring used to connect to the instance, this can be used to debug scenarios or accomidate new options that may not be supported in the mainstream module. Please proceed with caution using this parameter as it could be removed in the future or may cause unintended consequences when used in combination with connection string parameters that are unexpected. </maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>ConnectionTimeoutInSeconds</maml:name>
+			<maml:description>
+				<maml:para>Integer value for the connection timeout in seconds</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
+			<dev:type>
+				<maml:name>Int32</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue>120</dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>LogWriteDirectory</maml:name>
+			<maml:description>
+				<maml:para>Override the directory location to store the Xrm.Tooling.Connector log files. The directory must already exist, and the user who is running the cmdlet must have Write permission to the directory. You must also use the -Verbose parameter along with the -LogWriteDirectory parameter to be able to store the log files in a custom location.</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>BypassTokenCache</maml:name>
+			<maml:description>
+				<maml:para>Will bypass using a local cache path, this is most commonly used in conjunction with build pipelines in azure dev ops or limited access environments</maml:para>
 			</maml:description>
 			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
 			<dev:type>
 				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="5">
+			<maml:name>Username</maml:name>
+			<maml:description>
+				<maml:para>This should be used when needing to provide a username hint to ADAL, this will ensure the correct identity is used to attempt acquring a token. </maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
 				<maml:uri/>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
@@ -2141,7 +2354,7 @@ You can use Get-Credential to create Credential information.</maml:para>
 	</maml:alertSet>
 	<command:examples>
 		<command:example>
-			<maml:title>--------------------------  Example 1  --------------------------</maml:title>
+			<maml:title>--------------------------  Example 1 Office365 legacy authentication  --------------------------</maml:title>
 			<maml:introduction>
 				<maml:paragraph>PS C:\&gt;</maml:paragraph>
 			</maml:introduction>
@@ -2167,7 +2380,7 @@ LastCrmException               :
                                   [OrganizationDataService, 
                                   https://contoso.api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc]}
 ConnectionLockObject           : System.Object
-ConnectedOrgVersion            : 8.2.1.359
+ConnectedOrgVersion            : 9.1.0000.0000
 DisableCrossThreadSafeties     : False
 CallerId                       : 00000000-0000-0000-0000-000000000000</maml:para>
 			</dev:remarks>
@@ -2180,18 +2393,18 @@ CallerId                       : 00000000-0000-0000-0000-000000000000</maml:para
 			</command:commandLines>
 		</command:example>
 		<command:example>
-			<maml:title>--------------------------  Example 2  --------------------------</maml:title>
+			<maml:title>--------------------------  Example 2 oAuth Single Sign on  --------------------------</maml:title>
 			<maml:introduction>
 				<maml:paragraph>PS C:\&gt;</maml:paragraph>
 			</maml:introduction>
 			<dev:code>PS C:\&gt; Connect-CrmOnline -ServerUrl &quot;https://contoso.crm.dynamics.com&quot; -ForceOAuth</dev:code>
 			<dev:remarks>
-				<maml:para>Connect to online using your organization URL using oAuth and get prompted for a credential (versus providing one) </maml:para>
+				<maml:para>Connect to online using your organization URL using oAuth attempting single sign on - sign on using ADAL and the browser is attempted when a credential is not provided. </maml:para>
 				<maml:para />
 				<maml:para />
 				<maml:para>IsReady                        : True
 IsBatchOperationsAvailable     : True
-Authority                      : https://login.windows.net/99f9884f-8651-415f-91ab-217c7036db97/oauth2/authorize/
+Authority                      : https://login.windows.net/{guid}/oauth2/authorize/
 OAuthUserId                    : user@contoso.com 
 ActiveAuthenticationType       : OAuth
 OrganizationServiceProxy       :
@@ -2199,13 +2412,120 @@ OrganizationWebProxyClient     : Microsoft.Xrm.Sdk.WebServiceClient.Organization
 LastCrmError                   :
 LastCrmException               :
 CrmConnectOrgUriActual         : https://contoso.api.crm.dynamics.com/XRMServices/2011/Organization.svc/web?SDKClientVersion=9.0.9002.0
-ConnectedOrgFriendlyName       : PFEStaffing
-ConnectedOrgUniqueName         : pfecrmol
+ConnectedOrgFriendlyName       : Contoso
+ConnectedOrgUniqueName         : contosocrmol
 ConnectedOrgPublishedEndpoints : {[WebApplication, https://contoso.crm.dynamics.com/], [OrganizationService, https://contoso.api.crm.dynamics.com/XRMServices/2011/Organization.svc], [OrganizationDataService, https://contoso.api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc]}
 ConnectionLockObject           : System.Object
-ConnectedOrgVersion            : 8.2.1.359
+ConnectedOrgVersion            : 9.1.0000.0000
 DisableCrossThreadSafeties     : False
 CallerId                       : 00000000-0000-0000-0000-000000000000</maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 3 oAuth with credenital  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>PS C:\&gt; Connect-CrmOnline -ServerUrl &quot;https://contoso.crm.dynamics.com&quot;  -Credential (Get-Credential) -ForceOAuth</dev:code>
+			<dev:remarks>
+				<maml:para>Connect to online using your organization URL using oAuth using provided credential.</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para>IsReady                        : True
+IsBatchOperationsAvailable     : True
+Authority                      : https://login.windows.net/{guid}/oauth2/authorize/
+OAuthUserId                    : user@contoso.com 
+ActiveAuthenticationType       : OAuth
+OrganizationServiceProxy       :
+OrganizationWebProxyClient     : Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient
+LastCrmError                   :
+LastCrmException               :
+CrmConnectOrgUriActual         : https://contoso.api.crm.dynamics.com/XRMServices/2011/Organization.svc/web?SDKClientVersion=9.0.9002.0
+ConnectedOrgFriendlyName       : Contoso
+ConnectedOrgUniqueName         : contosocrmol
+ConnectedOrgPublishedEndpoints : {[WebApplication, https://contoso.crm.dynamics.com/], [OrganizationService, https://contoso.api.crm.dynamics.com/XRMServices/2011/Organization.svc], [OrganizationDataService, https://contoso.api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc]}
+ConnectionLockObject           : System.Object
+ConnectedOrgVersion            : 9.1.0000.0000
+DisableCrossThreadSafeties     : False
+CallerId                       : 00000000-0000-0000-0000-000000000000</maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 4 oAuth with ClientSecret  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>PS C:\&gt; Connect-CrmOnline -ServerUrl &quot;https://contoso.crm.dynamics.com&quot; -ClientSecret &quot;T_DA0EY+DdfaJFH3/DFLK@QoFbY&quot; -OAuthClientId &quot;812fad6d-4727-44f5-b02e-f35d74efb78e&quot; -OAuthRedirectUri &quot;https://tempuri.org&quot;</dev:code>
+			<dev:remarks>
+				<maml:para>Connect to a CDS instance as an application user, using ClientSecret authentication </maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para>MaxRetryCount                       : 10
+RetryPauseTime                      : 00:00:05
+IsReady                             : True
+IsBatchOperationsAvailable          : True
+Authority                           : https://login.microsoftonline.com/{guid}/oauth2/authorize/
+OAuthUserId                         :
+ActiveAuthenticationType            : ClientSecret
+OrganizationServiceProxy            :
+OrganizationWebProxyClient          : Microsoft.Xrm.Sdk.WebServiceClient.OrganizationWebProxyClient
+LastCrmError                        :
+LastCrmException                    :
+CrmConnectOrgUriActual              : https://contoso.crm.dynamics.com/XRMServices/2011/Organization.svc/web?SDKClientV
+                                      ersion=9.1.0000.0000
+ConnectedOrgFriendlyName            : [9.1] contoso seanmcn
+ConnectedOrgUniqueName              : contoso
+ConnectedOrgPublishedEndpoints      : {[WebApplication, https://contoso.crm.dynamics.com/], [OrganizationService,
+                                      https://contoso.api.crm.dynamics.com/XRMServices/2011/Organization.svc],
+                                      [OrganizationDataService,
+                                      https://contoso.api.crm.dynamics.com/XRMServices/2011/OrganizationData.svc]}
+ConnectionLockObject                : System.Object
+ConnectedOrgVersion                 : 9.1.0000.0000
+ConnectedOrgId                      : b283ca00-d54d-4dd0-ba1a-ee8e51d5256a
+DisableCrossThreadSafeties          : False
+CallerId                            : 00000000-0000-0000-0000-000000000000
+CallerAADObjectId                   :
+SessionTrackingId                   :
+ForceServerMetadataCacheConsistency : False
+SdkVersionProperty                  : 9.1.0000.0000
+TenantId                            : 03cd4258-2030-45a3-aea9-508adbed80b6
+EnvironmentId                       : 11537934-8ab9-4721-aba1-0feff3133e38
+_sdkVersionProperty                 : 9.1.0000.0000</maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example 5 ConnectionString FOR DEBUGGING  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>PS C:\&gt; Connect-CrmOnline -ConnectionString &quot;RequireNewInstance=True;Url=https://naosrtw.crm.dynamics.com;AuthType=ClientSecret;ClientId=812fad6d-4727-44f5-b02e-f35d74efb78e;SkipDiscovery=True;ClientSecret=T_DA0EY+DdfaJFH3/DFLK@QoFbY&quot; -ConnectionTimeoutInSeconds 500 -LogWriteDirectory &quot;C:\temp\&quot;</dev:code>
+			<dev:remarks>
+				<maml:para>Connect to a CDS instance as an application user, using a custom connectionstring </maml:para>
+				<maml:para>Use with caution and *only* for debugging as this may change or parameter may be removed in the future. </maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
 			</dev:remarks>
 			<command:commandLines>
 				<command:commandLine>
@@ -8932,7 +9252,7 @@ To omit conn parameter, you need creating $conn in advance, then cmdlets automat
 		<command:name>Import-CrmSolution</command:name>
 		<maml:description>
 			<maml:para>Imports solution file to CRM Organization.
-</maml:para>
+NOTE: Under most circumstances you should use Import-CrmSolutionAsync instead of this cmdlet</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -9192,11 +9512,11 @@ To omit conn parameter, you need creating $conn in advance, then cmdlets automat
 			<maml:introduction>
 				<maml:paragraph>PS C:\&gt;</maml:paragraph>
 			</maml:introduction>
-			<dev:code>Import-CrmSolution &quot;C:\SampleSolution_1_0_0_0.zip&quot; $True
-</dev:code>
+			<dev:code>Import-CrmSolution &quot;C:\SampleSolution_1_0_0_0.zip&quot; $True -AsyncOperationImportMethod</dev:code>
 			<dev:remarks>
 				<maml:para>This example imports solution by activating plug-ins and returns JobId by omitting parameter names.
-When omitting parameter names, you do not provide $conn, cmdlets automatically finds it.</maml:para>
+When omitting parameter names, you do not provide $conn, cmdlets automatically finds it.
+Also, the Async Operation Import will be used instead of waiting for a response, which is preferred. </maml:para>
 				<maml:para />
 				<maml:para />
 				<maml:para></maml:para>
@@ -10546,6 +10866,13 @@ You can use Get-CrmEntityAttributeMetadata cmdlet and check AttributeType to see
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
 			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>PreserveCrmRecordId</maml:name>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
 		</command:syntaxItem>
 	</command:syntax>
 	<command:parameters>
@@ -10594,6 +10921,18 @@ You can use Get-CrmEntityAttributeMetadata cmdlet and check AttributeType to see
 			<command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
 			<dev:type>
 				<maml:name>PSObject</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>PreserveCrmRecordId</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
 				<maml:uri/>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
@@ -12164,12 +12503,64 @@ PS C:\&gt;Remove-CrmSecurityRoleFromTeam $team $role</dev:code>
 				<command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>SecurityRoleName</maml:name>
+				<maml:description>
+					<maml:para>Security Role Name, case insensitive but must include spaces. Parameter value should be wrapped in quotes to include spaces.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Remove-CrmSecurityRoleFromUser</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>conn</maml:name>
+				<maml:description>
+					<maml:para>A connection to your CRM organization. Use $conn = Get-CrmConnection &lt;Parameters&gt; to generate it.
+</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">CrmServiceClient</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>UserRecord</maml:name>
+				<maml:description>
+					<maml:para>A user record object which is obtained via Get-CrmRecord/Get-CrmRecords. When you pass CrmRecord, then you don&#39;t use UserId.
+</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
 				<maml:name>SecurityRoleRecord</maml:name>
 				<maml:description>
 					<maml:para>A security role record object which is obtained via Get-CrmRecord/Get-CrmRecords. When you pass CrmRecord, then you don&#39;t use SecurityRoleId.
 </maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">PSObject</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+		<command:syntaxItem>
+			<maml:name>Remove-CrmSecurityRoleFromUser</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>conn</maml:name>
+				<maml:description>
+					<maml:para>A connection to your CRM organization. Use $conn = Get-CrmConnection &lt;Parameters&gt; to generate it.
+</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">CrmServiceClient</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>UserId</maml:name>
+				<maml:description>
+					<maml:para>An Id (guid) of user record
+</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>SecurityRoleName</maml:name>
+				<maml:description>
+					<maml:para>Security Role Name, case insensitive but must include spaces. Parameter value should be wrapped in quotes to include spaces.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
 		</command:syntaxItem>
 		<command:syntaxItem>
@@ -12258,6 +12649,18 @@ PS C:\&gt;Remove-CrmSecurityRoleFromTeam $team $role</dev:code>
 			<maml:description>
 				<maml:para>An Id (guid) of security role record
 </maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>SecurityRoleName</maml:name>
+			<maml:description>
+				<maml:para>Security Role Name, case insensitive but must include spaces. Parameter value should be wrapped in quotes to include spaces.</maml:para>
 			</maml:description>
 			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			<dev:type>
@@ -14543,6 +14946,13 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
 			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="66">
+				<maml:name>isenabledforallroles</maml:name>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="67">
 				<maml:name>IsFolderBasedTrackingEnabled</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Use folder-level tracking for Exchange folders&quot; setting. Supported at v7.1 or above.
@@ -14550,7 +14960,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="67">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="68">
 				<maml:name>IsFullTextSearchEnabled</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Enable full-text search for Quick Find&quot; setting.
@@ -14558,7 +14968,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="68">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="69">
 				<maml:name>IsHierarchicalSecurityModelEnabled</maml:name>
 				<maml:description>
 					<maml:para>Indicates whether the hierarchical security model is enabled.
@@ -14566,7 +14976,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="69">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="70">
 				<maml:name>IsPresenceEnabled</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Enable presence for the system&quot; setting.
@@ -14574,7 +14984,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="70">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="71">
 				<maml:name>IsUserAccessAuditEnabled</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Audit user access&quot; setting.
@@ -14582,7 +14992,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="71">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="72">
 				<maml:name>KbPrefix</maml:name>
 				<maml:description>
 					<maml:para>Prefix to use for all articles in Microsoft Dynamics CRM.
@@ -14590,7 +15000,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="72">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="73">
 				<maml:name>MaxAppointmentDurationDays</maml:name>
 				<maml:description>
 					<maml:para>Set &quot;Maximum durations of an appointment in days&quot; setting.
@@ -14598,7 +15008,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="73">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="74">
 				<maml:name>MaxDepthForHierarchicalSecurityModel</maml:name>
 				<maml:description>
 					<maml:para>Maximum depth for hierarchy security propagation.
@@ -14606,7 +15016,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="74">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="75">
 				<maml:name>MaximumActiveBusinessProcessFlowsAllowedPerEntity</maml:name>
 				<maml:description>
 					<maml:para>Maximum number of active business process flows allowed per entity.
@@ -14614,14 +15024,14 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="75">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="76">
 				<maml:name>MaximumDynamicPropertiesAllowed</maml:name>
 				<maml:description>
 					<maml:para>Maximum number of product properties for a product family or bundle.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="76">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="77">
 				<maml:name>MaximumTrackingNumber</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Number of digits for incremental message counter&quot; setting. Specify 999 will set 3 as setting, 9999 will set 4 as setting and you can set up to 999999999. You can disable &quot;Use Tracking Token&quot; by setting 0.
@@ -14629,14 +15039,14 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="77">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="78">
 				<maml:name>MaxProductsInBundle</maml:name>
 				<maml:description>
 					<maml:para>Maximum number of items in a bundle.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="78">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="79">
 				<maml:name>MaxRecordsForExportToExcel</maml:name>
 				<maml:description>
 					<maml:para>Maximum number of records that will be exported to a static Microsoft Office Excel worksheet when exporting from the grid.
@@ -14644,7 +15054,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="79">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="80">
 				<maml:name>MaxRecordsForLookupFilters</maml:name>
 				<maml:description>
 					<maml:para>Maximum number of lookup and picklist records that can be selected by user for filtering.
@@ -14652,7 +15062,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="80">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="81">
 				<maml:name>MaxUploadFileSize</maml:name>
 				<maml:description>
 					<maml:para>Maximum allowed size of an attachment.
@@ -14660,7 +15070,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="81">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="82">
 				<maml:name>MinAddressBookSyncInterval</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Minimum time between address book synchronizations&quot; setting.
@@ -14668,7 +15078,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="82">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="83">
 				<maml:name>MinOfflineSyncInterval</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Minimum time between background local data synchronizations&quot; setting.
@@ -14676,7 +15086,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="83">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="84">
 				<maml:name>MinOutlookSyncInterval</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Minimum time between synchronizations&quot; setting.
@@ -14684,7 +15094,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="84">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="85">
 				<maml:name>NotifyMailboxOwnerOfEmailServerLevelAlerts</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Notify mailbox owner&quot; setting.
@@ -14692,7 +15102,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="85">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="86">
 				<maml:name>OrderPrefix</maml:name>
 				<maml:description>
 					<maml:para>Prefix to use for all orders throughout Microsoft Dynamics CRM.
@@ -14700,7 +15110,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="86">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="87">
 				<maml:name>OutgoingEmailDeliveryMethod</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Outgoing Email&quot; setting for Configure default synchronization method. This parameter accepts int. To get all options, use Get-CrmEntityOptionSet mailbox outgoingemaildeliverymethod | % Items command and use PickListItemId.
@@ -14708,7 +15118,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="87">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="88">
 				<maml:name>PluginTraceLogSetting</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Enable logging to plug-in trace log&quot; setting. 0:Off 1:Exception 2:All
@@ -14716,7 +15126,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="88">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="89">
 				<maml:name>PricingDecimalPrecision</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Pricing Decimal Precision&quot; setting.
@@ -14724,7 +15134,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="89">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="90">
 				<maml:name>QuickFindRecordLimitEnabled</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Enable Quick Find record limits&quot; setting.
@@ -14732,7 +15142,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="90">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="91">
 				<maml:name>QuotePrefix</maml:name>
 				<maml:description>
 					<maml:para>Prefix to use for all quotes throughout Microsoft Dynamics CRM.
@@ -14740,42 +15150,42 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="91">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="92">
 				<maml:name>RequireApprovalForUserEmail</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Process emails only for approved users&quot; setting.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="92">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="93">
 				<maml:name>RequireApprovalForQueueEmail</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Process emails only for approved queues&quot; setting.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="93">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="94">
 				<maml:name>ShareToPreviousOwnerOnAssign</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Share reassigned records with original owner&quot; setting.</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="94">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="95">
 				<maml:name>TrackingPrefix</maml:name>
 				<maml:description>
 					<maml:para>Change Tracking Token &quot;Prefix&quot; setting.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="95">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="96">
 				<maml:name>TrackingTokenIdBase</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Deployment base tracking number&quot; setting.</maml:para>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="96">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="97">
 				<maml:name>TrackingTokenIdDigits</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Number of digits for user numbers&quot; setting
@@ -14783,7 +15193,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="97">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="98">
 				<maml:name>UniqueSpecifierLength</maml:name>
 				<maml:description>
 					<maml:para>Number of characters appended to invoice, quote, and order numbers.
@@ -14791,7 +15201,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="98">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="99">
 				<maml:name>UseLegacyRendering</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Use legacy form rendering&quot; setting.
@@ -14799,7 +15209,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="99">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="100">
 				<maml:name>UsePositionHierarchy</maml:name>
 				<maml:description>
 					<maml:para>Indicates whether to use position hierarchy.
@@ -14807,11 +15217,46 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="100">
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="101">
 				<maml:name>UseSkypeProtocol</maml:name>
 				<maml:description>
 					<maml:para>Change &quot;Select provider for Click to call&quot; setting. $true: Skype $false: Lync
 </maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="102">
+				<maml:name>UseAllowUsersSeeAppdownloadMessage</maml:name>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="103">
+				<maml:name>DefaultCrmCustomName</maml:name>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="104">
+				<maml:name>SuppressSLA</maml:name>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="105">
+				<maml:name>IsAuditEnabled</maml:name>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="106">
+				<maml:name>AllowLegacyClientExperience</maml:name>
+				<maml:description>
+					<maml:para />
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
 			</command:parameter>
@@ -15519,7 +15964,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="66">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="67">
 			<maml:name>IsFolderBasedTrackingEnabled</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Use folder-level tracking for Exchange folders&quot; setting. Supported at v7.1 or above.
@@ -15532,7 +15977,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="67">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="68">
 			<maml:name>IsFullTextSearchEnabled</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Enable full-text search for Quick Find&quot; setting.
@@ -15545,7 +15990,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="68">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="69">
 			<maml:name>IsHierarchicalSecurityModelEnabled</maml:name>
 			<maml:description>
 				<maml:para>Indicates whether the hierarchical security model is enabled.
@@ -15558,7 +16003,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="69">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="70">
 			<maml:name>IsPresenceEnabled</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Enable presence for the system&quot; setting.
@@ -15571,7 +16016,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="70">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="71">
 			<maml:name>IsUserAccessAuditEnabled</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Audit user access&quot; setting.
@@ -15584,7 +16029,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="71">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="72">
 			<maml:name>KbPrefix</maml:name>
 			<maml:description>
 				<maml:para>Prefix to use for all articles in Microsoft Dynamics CRM.
@@ -15597,7 +16042,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="72">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="73">
 			<maml:name>MaxAppointmentDurationDays</maml:name>
 			<maml:description>
 				<maml:para>Set &quot;Maximum durations of an appointment in days&quot; setting.
@@ -15610,7 +16055,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="73">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="74">
 			<maml:name>MaxDepthForHierarchicalSecurityModel</maml:name>
 			<maml:description>
 				<maml:para>Maximum depth for hierarchy security propagation.
@@ -15623,7 +16068,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="74">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="75">
 			<maml:name>MaximumActiveBusinessProcessFlowsAllowedPerEntity</maml:name>
 			<maml:description>
 				<maml:para>Maximum number of active business process flows allowed per entity.
@@ -15636,7 +16081,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="75">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="76">
 			<maml:name>MaximumDynamicPropertiesAllowed</maml:name>
 			<maml:description>
 				<maml:para>Maximum number of product properties for a product family or bundle.</maml:para>
@@ -15648,7 +16093,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="76">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="77">
 			<maml:name>MaximumTrackingNumber</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Number of digits for incremental message counter&quot; setting. Specify 999 will set 3 as setting, 9999 will set 4 as setting and you can set up to 999999999. You can disable &quot;Use Tracking Token&quot; by setting 0.
@@ -15661,7 +16106,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="77">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="78">
 			<maml:name>MaxProductsInBundle</maml:name>
 			<maml:description>
 				<maml:para>Maximum number of items in a bundle.</maml:para>
@@ -15673,7 +16118,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="78">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="79">
 			<maml:name>MaxRecordsForExportToExcel</maml:name>
 			<maml:description>
 				<maml:para>Maximum number of records that will be exported to a static Microsoft Office Excel worksheet when exporting from the grid.
@@ -15686,7 +16131,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="79">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="80">
 			<maml:name>MaxRecordsForLookupFilters</maml:name>
 			<maml:description>
 				<maml:para>Maximum number of lookup and picklist records that can be selected by user for filtering.
@@ -15699,7 +16144,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="80">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="81">
 			<maml:name>MaxUploadFileSize</maml:name>
 			<maml:description>
 				<maml:para>Maximum allowed size of an attachment.
@@ -15712,7 +16157,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="81">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="82">
 			<maml:name>MinAddressBookSyncInterval</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Minimum time between address book synchronizations&quot; setting.
@@ -15725,7 +16170,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="82">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="83">
 			<maml:name>MinOfflineSyncInterval</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Minimum time between background local data synchronizations&quot; setting.
@@ -15738,7 +16183,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="83">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="84">
 			<maml:name>MinOutlookSyncInterval</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Minimum time between synchronizations&quot; setting.
@@ -15751,7 +16196,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="84">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="85">
 			<maml:name>NotifyMailboxOwnerOfEmailServerLevelAlerts</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Notify mailbox owner&quot; setting.
@@ -15764,7 +16209,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="85">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="86">
 			<maml:name>OrderPrefix</maml:name>
 			<maml:description>
 				<maml:para>Prefix to use for all orders throughout Microsoft Dynamics CRM.
@@ -15777,7 +16222,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="86">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="87">
 			<maml:name>OutgoingEmailDeliveryMethod</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Outgoing Email&quot; setting for Configure default synchronization method. This parameter accepts int. To get all options, use Get-CrmEntityOptionSet mailbox outgoingemaildeliverymethod | % Items command and use PickListItemId.
@@ -15790,7 +16235,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="87">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="88">
 			<maml:name>PluginTraceLogSetting</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Enable logging to plug-in trace log&quot; setting. 0:Off 1:Exception 2:All
@@ -15803,7 +16248,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="88">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="89">
 			<maml:name>PricingDecimalPrecision</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Pricing Decimal Precision&quot; setting.
@@ -15816,7 +16261,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="89">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="90">
 			<maml:name>QuickFindRecordLimitEnabled</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Enable Quick Find record limits&quot; setting.
@@ -15829,7 +16274,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="90">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="91">
 			<maml:name>QuotePrefix</maml:name>
 			<maml:description>
 				<maml:para>Prefix to use for all quotes throughout Microsoft Dynamics CRM.
@@ -15842,7 +16287,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="91">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="92">
 			<maml:name>RequireApprovalForUserEmail</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Process emails only for approved users&quot; setting.</maml:para>
@@ -15854,7 +16299,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="92">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="93">
 			<maml:name>RequireApprovalForQueueEmail</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Process emails only for approved queues&quot; setting.</maml:para>
@@ -15866,7 +16311,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="93">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="94">
 			<maml:name>ShareToPreviousOwnerOnAssign</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Share reassigned records with original owner&quot; setting.</maml:para>
@@ -15878,7 +16323,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="94">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="95">
 			<maml:name>TrackingPrefix</maml:name>
 			<maml:description>
 				<maml:para>Change Tracking Token &quot;Prefix&quot; setting.</maml:para>
@@ -15890,7 +16335,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="95">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="96">
 			<maml:name>TrackingTokenIdBase</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Deployment base tracking number&quot; setting.</maml:para>
@@ -15902,7 +16347,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="96">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="97">
 			<maml:name>TrackingTokenIdDigits</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Number of digits for user numbers&quot; setting
@@ -15915,7 +16360,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="97">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="98">
 			<maml:name>UniqueSpecifierLength</maml:name>
 			<maml:description>
 				<maml:para>Number of characters appended to invoice, quote, and order numbers.
@@ -15928,7 +16373,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="98">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="99">
 			<maml:name>UseLegacyRendering</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Use legacy form rendering&quot; setting.
@@ -15941,7 +16386,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="99">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="100">
 			<maml:name>UsePositionHierarchy</maml:name>
 			<maml:description>
 				<maml:para>Indicates whether to use position hierarchy.
@@ -15954,7 +16399,7 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="100">
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="101">
 			<maml:name>UseSkypeProtocol</maml:name>
 			<maml:description>
 				<maml:para>Change &quot;Select provider for Click to call&quot; setting. $true: Skype $false: Lync
@@ -16107,6 +16552,78 @@ PS C:\&gt;Set-CrmRecordState $contact Inactive Inactive</dev:code>
 			<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
 			<dev:type>
 				<maml:name>Int32</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="66">
+			<maml:name>isenabledforallroles</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			<dev:type>
+				<maml:name>Boolean</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="102">
+			<maml:name>UseAllowUsersSeeAppdownloadMessage</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			<dev:type>
+				<maml:name>Boolean</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="103">
+			<maml:name>DefaultCrmCustomName</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="104">
+			<maml:name>SuppressSLA</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			<dev:type>
+				<maml:name>Boolean</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="105">
+			<maml:name>IsAuditEnabled</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			<dev:type>
+				<maml:name>Boolean</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="106">
+			<maml:name>AllowLegacyClientExperience</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">Boolean</command:parameterValue>
+			<dev:type>
+				<maml:name>Boolean</maml:name>
 				<maml:uri/>
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
@@ -17443,782 +17960,6 @@ Performance  : The operation took 00:00:00.3948901</maml:para>
 				</command:commandLine>
 			</command:commandLines>
 		</command:example>
-	</command:examples>
-	<maml:relatedLinks>
-	</maml:relatedLinks>
-</command:command>
-<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-<!--Generated by PS Cmdlet Help Editor-->
-	<command:details>
-		<command:name>Test-CrmTimerStart</command:name>
-		<maml:description>
-			<maml:para>Instantiate timer object and start it.
-</maml:para>
-		</maml:description>
-		<maml:copyright>
-			<maml:para />
-		</maml:copyright>
-		<command:verb>Test</command:verb>
-		<command:noun>CrmTimerStart</command:noun>
-		<dev:version />
-	</command:details>
-	<maml:description>
-		<maml:para>The Test-CrmTimerStart cmdlet lets you instantiate timer object and start it. Use with Text-CrmTimerStop.
-</maml:para>
-	</maml:description>
-	<command:syntax>
-		<command:syntaxItem>
-			<maml:name>Test-CrmTimerStart</maml:name>
-		</command:syntaxItem>
-	</command:syntax>
-	<command:parameters>	</command:parameters>
-	<command:inputTypes>
-		<command:inputType>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:inputType>
-	</command:inputTypes>
-	<command:returnValues>
-		<command:returnValue>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:returnValue>
-	</command:returnValues>
-	<command:terminatingErrors></command:terminatingErrors>
-	<command:nonTerminatingErrors></command:nonTerminatingErrors>
-	<maml:alertSet>
-		<maml:title></maml:title>
-		<maml:alert>
-			<maml:para />
-		</maml:alert>
-	</maml:alertSet>
-	<command:examples>
-		<command:example>
-			<maml:title>--------------------------  Example 1  --------------------------</maml:title>
-			<maml:introduction>
-				<maml:paragraph>PS C:\&gt;</maml:paragraph>
-			</maml:introduction>
-			<dev:code>Test-CrmTimerStart; $result = Get-MyCrmUserId; Test-CrmTimerStop</dev:code>
-			<dev:remarks>
-				<maml:para>This example shows performance result of Get-MyCrmUserId using a one line execution. </maml:para>
-				<maml:para />
-				<maml:para />
-				<maml:para>The operation took 00:00:00.0816009</maml:para>
-			</dev:remarks>
-			<command:commandLines>
-				<command:commandLine>
-					<command:commandText>
-						<maml:para />
-					</command:commandText>
-				</command:commandLine>
-			</command:commandLines>
-		</command:example>
-	</command:examples>
-	<maml:relatedLinks>
-	</maml:relatedLinks>
-</command:command>
-<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-<!--Generated by PS Cmdlet Help Editor-->
-	<command:details>
-		<command:name>Test-CrmTimerStop</command:name>
-		<maml:description>
-			<maml:para>Find timer object which started by Test-CrmTimerStart and stop it. Then display the elapsed time.
-</maml:para>
-		</maml:description>
-		<maml:copyright>
-			<maml:para />
-		</maml:copyright>
-		<command:verb>Test</command:verb>
-		<command:noun>CrmTimerStop</command:noun>
-		<dev:version />
-	</command:details>
-	<maml:description>
-		<maml:para>The Test-CrmTimerStop cmdlet lets you see the elapsed time after you call Test-CrmTimerStart.
-</maml:para>
-	</maml:description>
-	<command:syntax>
-		<command:syntaxItem>
-			<maml:name>Test-CrmTimerStop</maml:name>
-		</command:syntaxItem>
-	</command:syntax>
-	<command:parameters>	</command:parameters>
-	<command:inputTypes>
-		<command:inputType>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:inputType>
-	</command:inputTypes>
-	<command:returnValues>
-		<command:returnValue>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:returnValue>
-	</command:returnValues>
-	<command:terminatingErrors></command:terminatingErrors>
-	<command:nonTerminatingErrors></command:nonTerminatingErrors>
-	<maml:alertSet>
-		<maml:title></maml:title>
-		<maml:alert>
-			<maml:para />
-		</maml:alert>
-	</maml:alertSet>
-	<command:examples>
-		<command:example>
-			<maml:title>--------------------------  Example 1  --------------------------</maml:title>
-			<maml:introduction>
-				<maml:paragraph>PS C:\&gt;</maml:paragraph>
-			</maml:introduction>
-			<dev:code>Test-CrmTimerStart; $result = Get-MyCrmUserId; Test-CrmTimerStop</dev:code>
-			<dev:remarks>
-				<maml:para>This example shows performance result of Get-MyCrmUserId using a one line execution. </maml:para>
-				<maml:para />
-				<maml:para />
-				<maml:para>The operation took 00:00:00.0816009</maml:para>
-			</dev:remarks>
-			<command:commandLines>
-				<command:commandLine>
-					<command:commandText>
-						<maml:para />
-					</command:commandText>
-				</command:commandLine>
-			</command:commandLines>
-		</command:example>
-	</command:examples>
-	<maml:relatedLinks>
-	</maml:relatedLinks>
-</command:command>
-<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-<!--Generated by PS Cmdlet Help Editor-->
-	<command:details>
-		<command:name>Get-CrmConnection</command:name>
-		<maml:description>
-			<maml:para />
-		</maml:description>
-		<maml:copyright>
-			<maml:para />
-		</maml:copyright>
-		<command:verb>Get</command:verb>
-		<command:noun>CrmConnection</command:noun>
-		<dev:version />
-	</command:details>
-	<maml:description>
-		<maml:para />
-	</maml:description>
-	<command:syntax>
-		<command:syntaxItem>
-			<maml:name>Get-CrmConnection</maml:name>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="0">
-				<maml:name>InteractiveMode</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-				<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-				<maml:name>LogWriteDirectory</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-		</command:syntaxItem>
-		<command:syntaxItem>
-			<maml:name>Get-CrmConnection</maml:name>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
-				<maml:name>OrganizationName</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="5">
-				<maml:name>ProfileName</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="3">
-				<maml:name>HomeRealmUrl</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="0">
-				<maml:name>ServerUrl</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-				<maml:name>Credential</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-				<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-				<maml:name>LogWriteDirectory</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-		</command:syntaxItem>
-		<command:syntaxItem>
-			<maml:name>Get-CrmConnection</maml:name>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
-				<maml:name>OrganizationName</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="5">
-				<maml:name>ProfileName</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="4">
-				<maml:name>DeploymentRegion</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-				<maml:name>OnLineType</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">CommonAuth+OnlineType</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-				<maml:name>Credential</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-				<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-				<maml:name>LogWriteDirectory</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-		</command:syntaxItem>
-		<command:syntaxItem>
-			<maml:name>Get-CrmConnection</maml:name>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-				<maml:name>ConnectionString</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-				<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-				<maml:name>LogWriteDirectory</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-		</command:syntaxItem>
-	</command:syntax>
-	<command:parameters>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="0">
-			<maml:name>InteractiveMode</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			<dev:type>
-				<maml:name>SwitchParameter</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="2">
-			<maml:name>OrganizationName</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="5">
-			<maml:name>ProfileName</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="4">
-			<maml:name>DeploymentRegion</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-			<maml:name>OnLineType</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">CommonAuth+OnlineType</command:parameterValue>
-			<dev:type>
-				<maml:name>CommonAuth+OnlineType</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-			<maml:name>Credential</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
-			<dev:type>
-				<maml:name>PSCredential</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="3">
-			<maml:name>HomeRealmUrl</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			<dev:type>
-				<maml:name>Uri</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="0">
-			<maml:name>ServerUrl</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			<dev:type>
-				<maml:name>Uri</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-			<maml:name>ConnectionString</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-			<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			<dev:type>
-				<maml:name>Int32</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-			<maml:name>LogWriteDirectory</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-	</command:parameters>
-	<command:inputTypes>
-		<command:inputType>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:inputType>
-	</command:inputTypes>
-	<command:returnValues>
-		<command:returnValue>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:returnValue>
-	</command:returnValues>
-	<command:terminatingErrors></command:terminatingErrors>
-	<command:nonTerminatingErrors></command:nonTerminatingErrors>
-	<maml:alertSet>
-		<maml:title></maml:title>
-		<maml:alert>
-			<maml:para />
-		</maml:alert>
-	</maml:alertSet>
-	<command:examples>
-	</command:examples>
-	<maml:relatedLinks>
-	</maml:relatedLinks>
-</command:command>
-<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
-<!--Generated by PS Cmdlet Help Editor-->
-	<command:details>
-		<command:name>Get-CrmOrganizations</command:name>
-		<maml:description>
-			<maml:para />
-		</maml:description>
-		<maml:copyright>
-			<maml:para />
-		</maml:copyright>
-		<command:verb>Get</command:verb>
-		<command:noun>CrmOrganizations</command:noun>
-		<dev:version />
-	</command:details>
-	<maml:description>
-		<maml:para />
-	</maml:description>
-	<command:syntax>
-		<command:syntaxItem>
-			<maml:name>Get-CrmOrganizations</maml:name>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="4">
-				<maml:name>DeploymentRegion</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-				<maml:name>OnLineType</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">CommonAuth+OnlineType</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-				<maml:name>Credential</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-				<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-				<maml:name>LogWriteDirectory</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
-				<maml:name>WhatIf</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
-				<maml:name>Confirm</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			</command:parameter>
-		</command:syntaxItem>
-		<command:syntaxItem>
-			<maml:name>Get-CrmOrganizations</maml:name>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="3">
-				<maml:name>HomeRealmUrl</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="0">
-				<maml:name>ServerUrl</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-				<maml:name>Credential</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-				<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-				<maml:name>LogWriteDirectory</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
-				<maml:name>WhatIf</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			</command:parameter>
-			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
-				<maml:name>Confirm</maml:name>
-				<maml:description>
-					<maml:para />
-				</maml:description>
-				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			</command:parameter>
-		</command:syntaxItem>
-	</command:syntax>
-	<command:parameters>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="4">
-			<maml:name>DeploymentRegion</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-			<maml:name>OnLineType</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">CommonAuth+OnlineType</command:parameterValue>
-			<dev:type>
-				<maml:name>CommonAuth+OnlineType</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="1">
-			<maml:name>Credential</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">PSCredential</command:parameterValue>
-			<dev:type>
-				<maml:name>PSCredential</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
-			<maml:name>WhatIf</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			<dev:type>
-				<maml:name>SwitchParameter</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="named">
-			<maml:name>Confirm</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
-			<dev:type>
-				<maml:name>SwitchParameter</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="3">
-			<maml:name>HomeRealmUrl</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			<dev:type>
-				<maml:name>Uri</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="0">
-			<maml:name>ServerUrl</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">Uri</command:parameterValue>
-			<dev:type>
-				<maml:name>Uri</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByValue, ByPropertyName)" position="20">
-			<maml:name>MaxCrmConnectionTimeOutMinutes</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">Int32</command:parameterValue>
-			<dev:type>
-				<maml:name>Int32</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="true (ByPropertyName)" position="named">
-			<maml:name>LogWriteDirectory</maml:name>
-			<maml:description>
-				<maml:para />
-			</maml:description>
-			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
-			<dev:type>
-				<maml:name>String</maml:name>
-				<maml:uri/>
-			</dev:type>
-			<dev:defaultValue></dev:defaultValue>
-		</command:parameter>
-	</command:parameters>
-	<command:inputTypes>
-		<command:inputType>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:inputType>
-	</command:inputTypes>
-	<command:returnValues>
-		<command:returnValue>
-			<dev:type>
-				<maml:name></maml:name>
-				<maml:uri></maml:uri>
-				<maml:description/>
-			</dev:type>
-			<maml:description>
-<maml:para />
-			</maml:description>
-		</command:returnValue>
-	</command:returnValues>
-	<command:terminatingErrors></command:terminatingErrors>
-	<command:nonTerminatingErrors></command:nonTerminatingErrors>
-	<maml:alertSet>
-		<maml:title></maml:title>
-		<maml:alert>
-			<maml:para />
-		</maml:alert>
-	</maml:alertSet>
-	<command:examples>
 	</command:examples>
 	<maml:relatedLinks>
 	</maml:relatedLinks>
@@ -20194,7 +19935,7 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 	<command:details>
 		<command:name>Import-CrmSolutionAsync</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Import a solution using an import job.</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -20204,7 +19945,7 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para />
+		<maml:para>Import a solution using an import job and poll for the result (success or failure).  This is the preferred method of importing. </maml:para>
 	</maml:description>
 	<command:syntax>
 		<command:syntaxItem>
@@ -20275,6 +20016,13 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 					<maml:para>Rather than return the import ID - block and poll until the command is complete</maml:para>
 				</maml:description>
 				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="9">
+				<maml:name>PollingDelayInSeconds</maml:name>
+				<maml:description>
+					<maml:para />
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
 			</command:parameter>
 		</command:syntaxItem>
 	</command:syntax>
@@ -20391,6 +20139,18 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 			</dev:type>
 			<dev:defaultValue></dev:defaultValue>
 		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="9">
+			<maml:name>PollingDelayInSeconds</maml:name>
+			<maml:description>
+				<maml:para />
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+			<dev:type>
+				<maml:name>Int64</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
 	</command:parameters>
 	<command:inputTypes>
 		<command:inputType>
@@ -20425,6 +20185,26 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 		</maml:alert>
 	</maml:alertSet>
 	<command:examples>
+		<command:example>
+			<maml:title>--------------------------  Example 1  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>Import-CrmSolutionAsync -SolutionFilePath c:\temp\mysolution.zip -ActivateWorkflows -OverwriteUnManagedCustomizations -MaxWaitTimeInSeconds 600</dev:code>
+			<dev:remarks>
+				<maml:para>Import a solution using an import job, poll for the result for up to 600 seconds</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
 	</command:examples>
 	<maml:relatedLinks>
 	</maml:relatedLinks>
@@ -21062,7 +20842,7 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 	<command:details>
 		<command:name>Set-CrmSolutionVersionNumber</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Sets a CDS Solutions version number.</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -21072,7 +20852,7 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para />
+		<maml:para>Sets a CDS Solutions version number in the CDS Database via an api call </maml:para>
 	</maml:description>
 	<command:syntax>
 		<command:syntaxItem>
@@ -21381,7 +21161,7 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 	<command:details>
 		<command:name>Invoke-CrmAction</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Invoke a CDS or CRM Action</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -21391,7 +21171,7 @@ When omitting parameter names, you do not provide $conn, cmdlets automatically f
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para />
+		<maml:para>Invoke a CDS or CRM Action</maml:para>
 	</maml:description>
 	<command:syntax>
 		<command:syntaxItem>
@@ -21662,7 +21442,7 @@ Output                         True</maml:para>
 	<command:details>
 		<command:name>Set-CrmQueueMailbox</command:name>
 		<maml:description>
-			<maml:para />
+			<maml:para>Sets the CRM mailbox for a given queue</maml:para>
 		</maml:description>
 		<maml:copyright>
 			<maml:para />
@@ -21672,7 +21452,7 @@ Output                         True</maml:para>
 		<dev:version />
 	</command:details>
 	<maml:description>
-		<maml:para />
+		<maml:para>Sets the CRM mailbox for a given queue.</maml:para>
 	</maml:description>
 	<command:syntax>
 		<command:syntaxItem>
@@ -22127,6 +21907,342 @@ When omitting conn parameter, cmdlets automatically finds it.</maml:para>
 				</command:commandLine>
 			</command:commandLines>
 		</command:example>
+	</command:examples>
+	<maml:relatedLinks>
+	</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<!--Generated by PS Cmdlet Help Editor-->
+	<command:details>
+		<command:name>Merge-CrmHoldingSolutionAsync</command:name>
+		<maml:description>
+			<maml:para>Merges a holding solution.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para />
+		</maml:copyright>
+		<command:verb>Merge</command:verb>
+		<command:noun>CrmHoldingSolutionAsync</command:noun>
+		<dev:version />
+	</command:details>
+	<maml:description>
+		<maml:para>Merges a holding solution using the DeleteAndPromoteRequest</maml:para>
+	</maml:description>
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Merge-CrmHoldingSolutionAsync</maml:name>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named">
+				<maml:name>conn</maml:name>
+				<maml:description>
+					<maml:para>The connection to the CRM organization. Use Get-CrmConnection or one of the other connection functions to get it.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">CrmServiceClient</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+				<maml:name>CrmSolutionName</maml:name>
+				<maml:description>
+					<maml:para>The unique name of the base solution to apply the upgrade.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+				<maml:name>MaxWaitTimeInSeconds</maml:name>
+				<maml:description>
+					<maml:para>The polling delay in seconds, to check wether the delete and promote async operation has finished. If specified, it will override the default value of 5 seconds. After the max time expires, the command will still execute in the background but the powershell code will continue</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+				<maml:name>BlockUntilImportComplete</maml:name>
+				<maml:description>
+					<maml:para>If specified, the execution will poll and wait for the delete and promote async operation to complete. If not specified, it will return the asyncoperationid immediatelly and the operation will continue to execute asynchronously on Dynamics organization.</maml:para>
+				</maml:description>
+				<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			</command:parameter>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
+				<maml:name>PollingDelayInSeconds</maml:name>
+				<maml:description>
+					<maml:para>The polling delay in seconds, to check wether the delete and promote async operation has finished. If specified, it will override the default value of 5 seconds.</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<command:parameters>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="named">
+			<maml:name>conn</maml:name>
+			<maml:description>
+				<maml:para>The connection to the CRM organization. Use Get-CrmConnection or one of the other connection functions to get it.</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">CrmServiceClient</command:parameterValue>
+			<dev:type>
+				<maml:name>CrmServiceClient</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="true" variableLength="false" globbing="false" pipelineInput="false" position="1">
+			<maml:name>CrmSolutionName</maml:name>
+			<maml:description>
+				<maml:para>The unique name of the base solution to apply the upgrade.</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="4">
+			<maml:name>PollingDelayInSeconds</maml:name>
+			<maml:description>
+				<maml:para>The polling delay in seconds, to check wether the delete and promote async operation has finished. If specified, it will override the default value of 5 seconds.</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+			<dev:type>
+				<maml:name>Int64</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="2">
+			<maml:name>MaxWaitTimeInSeconds</maml:name>
+			<maml:description>
+				<maml:para>The polling delay in seconds, to check wether the delete and promote async operation has finished. If specified, it will override the default value of 5 seconds. After the max time expires, the command will still execute in the background but the powershell code will continue</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">Int64</command:parameterValue>
+			<dev:type>
+				<maml:name>Int64</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="3">
+			<maml:name>BlockUntilImportComplete</maml:name>
+			<maml:description>
+				<maml:para>If specified, the execution will poll and wait for the delete and promote async operation to complete. If not specified, it will return the asyncoperationid immediatelly and the operation will continue to execute asynchronously on Dynamics organization.</maml:para>
+			</maml:description>
+			<command:parameterValue required="false" variableLength="false">SwitchParameter</command:parameterValue>
+			<dev:type>
+				<maml:name>SwitchParameter</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri></maml:uri>
+				<maml:description/>
+			</dev:type>
+			<maml:description>
+<maml:para />
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri></maml:uri>
+				<maml:description/>
+			</dev:type>
+			<maml:description>
+<maml:para />
+			</maml:description>
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors></command:terminatingErrors>
+	<command:nonTerminatingErrors></command:nonTerminatingErrors>
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para />
+		</maml:alert>
+	</maml:alertSet>
+	<command:examples>
+		<command:example>
+			<maml:title>--------------------------  Example1  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>Merge-CrmHoldingSolutionAsync -conn $conn -CrmSolutionName &quot;SampleSolution&quot;</dev:code>
+			<dev:remarks>
+				<maml:para>This example requests a delete and promote message regarding a Dynamics solution named &quot;SampleSolution&quot; and returns the system job id.</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+		<command:example>
+			<maml:title>--------------------------  Example2  --------------------------</maml:title>
+			<maml:introduction>
+				<maml:paragraph>PS C:\&gt;</maml:paragraph>
+			</maml:introduction>
+			<dev:code>Merge-CrmHoldingSolutionAsync -conn $conn -CrmSolutionName &quot;SampleSolution&quot; -MaxWaitTimeInSeconds 900 -PollingDelayInSeconds 60 -BlockUntilImportComplete</dev:code>
+			<dev:remarks>
+				<maml:para>This example requests a delete and promote message regarding a Dynamics solution named &quot;SampleSolution&quot;, while specifying that the execution should wait for the system job to finish and should poll the job every 60 seconds. It also sets a maximum blocking/polling time of 15 minutes (900 seconds). After the max time expires, the command will still execute in the background but the powershell code will continue</maml:para>
+				<maml:para />
+				<maml:para />
+				<maml:para></maml:para>
+			</dev:remarks>
+			<command:commandLines>
+				<command:commandLine>
+					<command:commandText>
+						<maml:para />
+					</command:commandText>
+				</command:commandLine>
+			</command:commandLines>
+		</command:example>
+	</command:examples>
+	<maml:relatedLinks>
+	</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<!--Generated by PS Cmdlet Help Editor-->
+	<command:details>
+		<command:name>Disable-CrmConnectorVerboseLogging</command:name>
+		<maml:description>
+			<maml:para>Disable verbsoe logging for the CDS connector.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para />
+		</maml:copyright>
+		<command:verb>Disable</command:verb>
+		<command:noun>CrmConnectorVerboseLogging</command:noun>
+		<dev:version />
+	</command:details>
+	<maml:description>
+		<maml:para>Disable verbsoe logging for the CDS connector.</maml:para>
+	</maml:description>
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Disable-CrmConnectorVerboseLogging</maml:name>
+		</command:syntaxItem>
+	</command:syntax>
+	<command:parameters>	</command:parameters>
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri></maml:uri>
+				<maml:description/>
+			</dev:type>
+			<maml:description>
+<maml:para />
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri></maml:uri>
+				<maml:description/>
+			</dev:type>
+			<maml:description>
+<maml:para />
+			</maml:description>
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors></command:terminatingErrors>
+	<command:nonTerminatingErrors></command:nonTerminatingErrors>
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para />
+		</maml:alert>
+	</maml:alertSet>
+	<command:examples>
+	</command:examples>
+	<maml:relatedLinks>
+	</maml:relatedLinks>
+</command:command>
+<command:command xmlns:maml="http://schemas.microsoft.com/maml/2004/10" xmlns:command="http://schemas.microsoft.com/maml/dev/command/2004/10" xmlns:dev="http://schemas.microsoft.com/maml/dev/2004/10" xmlns:MSHelp="http://msdn.microsoft.com/mshelp">
+<!--Generated by PS Cmdlet Help Editor-->
+	<command:details>
+		<command:name>Enable-CrmConnectorVerboseLogging</command:name>
+		<maml:description>
+			<maml:para>Enable verbsoe logging for the CDS connector.</maml:para>
+		</maml:description>
+		<maml:copyright>
+			<maml:para />
+		</maml:copyright>
+		<command:verb>Enable</command:verb>
+		<command:noun>CrmConnectorVerboseLogging</command:noun>
+		<dev:version />
+	</command:details>
+	<maml:description>
+		<maml:para>Enable verbsoe logging for the CDS connector.</maml:para>
+	</maml:description>
+	<command:syntax>
+		<command:syntaxItem>
+			<maml:name>Enable-CrmConnectorVerboseLogging</maml:name>
+			<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0">
+				<maml:name>filePath</maml:name>
+				<maml:description>
+					<maml:para>Valid path to the file you wish to have log entries pushed into</maml:para>
+				</maml:description>
+				<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			</command:parameter>
+		</command:syntaxItem>
+	</command:syntax>
+	<command:parameters>
+		<command:parameter required="false" variableLength="false" globbing="false" pipelineInput="false" position="0">
+			<maml:name>filePath</maml:name>
+			<maml:description>
+				<maml:para>Valid path to the file you wish to have log entries pushed into</maml:para>
+			</maml:description>
+			<command:parameterValue required="true" variableLength="false">String</command:parameterValue>
+			<dev:type>
+				<maml:name>String</maml:name>
+				<maml:uri/>
+			</dev:type>
+			<dev:defaultValue></dev:defaultValue>
+		</command:parameter>
+	</command:parameters>
+	<command:inputTypes>
+		<command:inputType>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri></maml:uri>
+				<maml:description/>
+			</dev:type>
+			<maml:description>
+<maml:para />
+			</maml:description>
+		</command:inputType>
+	</command:inputTypes>
+	<command:returnValues>
+		<command:returnValue>
+			<dev:type>
+				<maml:name></maml:name>
+				<maml:uri></maml:uri>
+				<maml:description/>
+			</dev:type>
+			<maml:description>
+<maml:para />
+			</maml:description>
+		</command:returnValue>
+	</command:returnValues>
+	<command:terminatingErrors></command:terminatingErrors>
+	<command:nonTerminatingErrors></command:nonTerminatingErrors>
+	<maml:alertSet>
+		<maml:title></maml:title>
+		<maml:alert>
+			<maml:para />
+		</maml:alert>
+	</maml:alertSet>
+	<command:examples>
 	</command:examples>
 	<maml:relatedLinks>
 	</maml:relatedLinks>
