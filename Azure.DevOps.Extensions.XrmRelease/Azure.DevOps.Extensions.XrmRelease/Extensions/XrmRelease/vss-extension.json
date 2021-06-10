@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "xrm-release",
-  "version": "3.3.7",
+  "version": "3.3.8",
   "name": "Capgemini Release Tasks for Dynamics 365",
   "scopes": [ "vso.build", "vso.code_write" ],
   "description": "Tasks for releasing into and managing Dynamics 365 instances.",
@@ -69,6 +69,9 @@
     },
     {
       "path": "SyncSLATask"
+    },
+    {
+      "path": "DeleteAuditLogsTask"
     }
   ],
   "categories": [
@@ -183,6 +186,16 @@
       "type": "ms.vss-distributed-task.task",
       "properties": {
         "name": "SyncSLATask"
+      }
+    },
+    {
+      "id": "DeleteAuditLogsTask-task",
+      "type": "ms.vss-distributed-task.task",
+      "targets": [
+        "ms.vss-distributed-task.tasks"
+      ],
+      "properties": {
+        "name": "DeleteAuditLogsTask"
       }
     }
   ]
