@@ -33,33 +33,26 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Capgemini.DataMigration.Core, Version=3.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.9\lib\net462\Capgemini.DataMigration.Core.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Capgemini.DataMigration.Core, Version=3.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.11\lib\net462\Capgemini.DataMigration.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Capgemini.DataMigration.Resiliency.Polly, Version=3.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.9\lib\net462\Capgemini.DataMigration.Resiliency.Polly.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Capgemini.DataMigration.Resiliency.Polly, Version=3.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.11\lib\net462\Capgemini.DataMigration.Resiliency.Polly.dll</HintPath>
     </Reference>
-    <Reference Include="Capgemini.DataScrambler, Version=3.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.9\lib\net462\Capgemini.DataScrambler.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Capgemini.DataScrambler, Version=3.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.11\lib\net462\Capgemini.DataScrambler.dll</HintPath>
     </Reference>
-    <Reference Include="Capgemini.Xrm.DataMigration.Core, Version=3.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.9\lib\net462\Capgemini.Xrm.DataMigration.Core.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Capgemini.Xrm.DataMigration.Core, Version=3.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.11\lib\net462\Capgemini.Xrm.DataMigration.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Capgemini.Xrm.DataMigration.CrmStore, Version=3.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.9\lib\net462\Capgemini.Xrm.DataMigration.CrmStore.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Capgemini.Xrm.DataMigration.CrmStore, Version=3.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.11\lib\net462\Capgemini.Xrm.DataMigration.CrmStore.dll</HintPath>
     </Reference>
-    <Reference Include="Capgemini.Xrm.DataMigration.Engine, Version=3.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.9\lib\net462\Capgemini.Xrm.DataMigration.Engine.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Capgemini.Xrm.DataMigration.Engine, Version=3.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.11\lib\net462\Capgemini.Xrm.DataMigration.Engine.dll</HintPath>
     </Reference>
-    <Reference Include="Capgemini.Xrm.DataMigration.FileStore, Version=3.1.9.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.9\lib\net462\Capgemini.Xrm.DataMigration.FileStore.dll</HintPath>
-      <SpecificVersion>False</SpecificVersion>
+    <Reference Include="Capgemini.Xrm.DataMigration.FileStore, Version=3.1.11.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Capgemini.Xrm.DataMigration.Engine.3.1.11\lib\net462\Capgemini.Xrm.DataMigration.FileStore.dll</HintPath>
     </Reference>
     <Reference Include="CsvHelper, Version=9.0.0.0, Culture=neutral, PublicKeyToken=8c4959082be5c823, processorArchitecture=MSIL">
       <HintPath>..\..\packages\CsvHelper.9.2.3\lib\net45\CsvHelper.dll</HintPath>
