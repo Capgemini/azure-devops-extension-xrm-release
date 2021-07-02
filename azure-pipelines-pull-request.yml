@@ -1,0 +1,48 @@
+trigger: none
+pr:
+  - master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  solution: '**/*.sln'
+  buildPlatform: 'Any CPU'
+  buildConfiguration: 'Release'
+
+stages:
+  - stage: Build
+    jobs:
+    - job: BuildJob
+      displayName: Build
+      steps:
+      - task: NuGetToolInstaller@0
+        displayName: 'Use NuGet 5.2.0'
+        inputs:
+          versionSpec: 5.2.0
+
+      - task: NuGetCommand@2
+        displayName: 'NuGet restore'
+        inputs:
+          restoreSolution: '$(solution)'
+          feedsToUse: config
+          nugetConfigPath: NuGet.config
+
+      - task: VSBuild@1
+        displayName: 'Build solution **\*.sln'
+        inputs:
+          solution: '$(solution)'
+          platform: '$(BuildPlatform)'
+          configuration: '$(BuildConfiguration)'
+
+      - task: VSTest@2
+        displayName: 'VsTest - testAssemblies'
+        inputs:
+          platform: '$(buildPlatform)'
+          configuration: '$(buildConfiguration)'
+          codeCoverageEnabled: true
+          testAssemblyVer2: |
+             **\*Tests*.dll
+             !**\*Integration*.dll
+             !**\obj\**
+           
