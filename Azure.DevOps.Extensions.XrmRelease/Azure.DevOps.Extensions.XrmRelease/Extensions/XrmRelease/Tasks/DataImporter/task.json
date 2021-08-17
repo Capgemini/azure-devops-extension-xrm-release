@@ -11,15 +11,12 @@
   "author": "capgemini-uk",
   "version": {
     "Major": 0,
-    "Minor": 14,
+    "Minor": 15,
     "Patch": 0
   },
-  "demands": [
-  ],
+  "demands": [],
   "minimumAgentVersion": "1.83.0",
-  "groups": [
-
-  ],
+  "groups": [],
   "inputs": [
     {
       "name": "jsonFolderPath",
