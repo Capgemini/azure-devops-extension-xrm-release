@@ -1,7 +1,7 @@
 {
   "manifestVersion": 1,
   "id": "xrm-release",
-  "version": "3.3.11",
+  "version": "3.3.12",
   "name": "Capgemini Release Tasks for Dynamics 365",
   "scopes": [
     "vso.build",
