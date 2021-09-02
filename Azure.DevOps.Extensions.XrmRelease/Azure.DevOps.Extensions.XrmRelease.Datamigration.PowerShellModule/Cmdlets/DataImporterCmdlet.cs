@@ -106,6 +106,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
                 {
                     manager.StartSingleThreadedImport(importConfig, new CmdletLoggerPS(this, TreatWarningsAsErrors), cancellationTokenSource, ConnectionString, CsvImport, schemaConfig);
                 }
+                this.LogTaskCompleteResult(logger);
             }
             catch (Exception exception)
             {
@@ -122,7 +123,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
             importConfig.IgnoreSystemFields = IgnoreSystemFields;
             importConfig.SaveBatchSize = SavePageSize;
             importConfig.JsonFolderPath = JsonFolderPath;
-   
+
             WriteVerbose("Import Configuration:");
 
             WriteVerbose("JsonFolderPath:" + importConfig.JsonFolderPath);
@@ -171,6 +172,17 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
             }
         }
 
-     
+        private void LogTaskCompleteResult(CmdletLogger logger)
+        {
+            if (logger.Errors.Any())
+            {
+                Console.WriteLine("##vso[task.complete result=Failed;]DONE");
+            }
+            else if (logger.Warnings.Any())
+            {
+                Console.WriteLine("##vso[task.complete result=SucceededWithIssues;]DONE");
+            }
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using Capgemini.DataMigration.Core;
 using System;
+using System.Collections.Generic;
 using System.Management.Automation;
 
 namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
@@ -13,15 +14,28 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
         {
             _treatWarningsAsErrors = treatWarningsAsErrors;
             _cmdlet = cmdlet;
+            this.Errors = new List<string>();
+            this.Warnings = new List<string>();
         }
+
+        /// <summary>
+        /// Gets warning messages logged.
+        /// </summary>
+        public IList<string> Warnings { get; }
+
+        /// <summary>
+        /// Gets error messages logged.
+        /// </summary>
+        public IList<string> Errors { get; }
 
         public void LogError(string message)
         {
-            LogError(message, new Exception(message));
+            LogError($"##vso[task.logissue type=error]{message}", new Exception(message));
         }
 
         public void LogError(string message, Exception ex)
         {
+            this.Errors.Add(message);
             _cmdlet.WriteError(new ErrorRecord(ex, message, ErrorCategory.SyntaxError, _cmdlet));
         }
 
@@ -40,7 +54,10 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
             if (_treatWarningsAsErrors)
                 LogError(message);
             else
-                _cmdlet.WriteWarning(message);
+            {
+                this.Warnings.Add(message);
+                _cmdlet.WriteWarning($"##vso[task.logissue type=warning]{message}");
+            }
         }
     }
 }
