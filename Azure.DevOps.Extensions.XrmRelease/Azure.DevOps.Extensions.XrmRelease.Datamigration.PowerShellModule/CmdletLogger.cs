@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
 {
-    public class CmdletLogger : ILogger
+    public class CmdletLogger : CmdletLoggerBase, ILogger
     {
         private readonly log4net.ILog _logger;
         private readonly bool _treatWarningsAsErrors;
@@ -15,19 +15,7 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
             _treatWarningsAsErrors = treatWarningsAsErrors;
             log4net.Config.BasicConfigurator.Configure();
             _logger = log4net.LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
-            this.Errors = new List<string>();
-            this.Warnings = new List<string>();
         }
-
-        /// <summary>
-        /// Gets warning messages logged.
-        /// </summary>
-        public IList<string> Warnings { get; }
-
-        /// <summary>
-        /// Gets error messages logged.
-        /// </summary>
-        public IList<string> Errors { get; }
 
         public void WriteLogMessage(string message)
         {
@@ -44,29 +32,29 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
             _logger.Debug($"{eventType}:{message}", ex);
         }
 
-        public void LogError(string message)
+        public override void LogError(string message)
         {
             this.Errors.Add(message);
             _logger.Error($"##vso[task.logissue type=error]{message}");
         }
 
-        public void LogError(string message, Exception ex)
+        public override void LogError(string message, Exception ex)
         {
             this.Errors.Add(message);
             _logger.Error($"##vso[task.logissue type=error]{message}{ex}", ex);
         }
 
-        public void LogInfo(string message)
+        public override void LogInfo(string message)
         {
             _logger.Info(message);
         }
 
-        public void LogVerbose(string message)
+        public override void LogVerbose(string message)
         {
             _logger.Debug(message);
         }
 
-        public void LogWarning(string message)
+        public override void LogWarning(string message)
         {
             if (_treatWarningsAsErrors)
                 LogError(message);
@@ -76,6 +64,5 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
                 _logger.Warn($"##vso[task.logissue type=warning]{message}");
             }
         }
-
     }
 }

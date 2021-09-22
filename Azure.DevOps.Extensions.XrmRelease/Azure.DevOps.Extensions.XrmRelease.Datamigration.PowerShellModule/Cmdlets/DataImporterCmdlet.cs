@@ -8,6 +8,7 @@ using System.Linq;
 using System.Management.Automation;
 using System.Threading;
 
+
 namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdlets
 {
     [Cmdlet(VerbsData.Import, "Dynamics365Data")]
@@ -46,7 +47,13 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
         protected override void ProcessRecord()
         {
             base.ProcessRecord();
-            var logger = new CmdletLogger(TreatWarningsAsErrors);
+            
+            CmdletLoggerBase logger = null;
+            if (MaxThreads > 1)
+                logger = new CmdletLogger(TreatWarningsAsErrors);
+            else
+                logger = new CmdletLoggerPS(this, TreatWarningsAsErrors);
+
             try
             {
                 logger.LogInfo("About to start importing data from Dynamics365");
@@ -104,9 +111,9 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
                 }
                 else
                 {
-                    manager.StartSingleThreadedImport(importConfig, new CmdletLoggerPS(this, TreatWarningsAsErrors), cancellationTokenSource, ConnectionString, CsvImport, schemaConfig);
+                    manager.StartSingleThreadedImport(importConfig, logger, cancellationTokenSource, ConnectionString, CsvImport, schemaConfig);
                 }
-                this.LogTaskCompleteResult(logger);
+                logger.LogTaskCompleteResult();
             }
             catch (Exception exception)
             {
@@ -171,18 +178,5 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule.Cmdl
                 }
             }
         }
-
-        private void LogTaskCompleteResult(CmdletLogger logger)
-        {
-            if (logger.Errors.Any())
-            {
-                Console.WriteLine("##vso[task.complete result=Failed;]DONE");
-            }
-            else if (logger.Warnings.Any())
-            {
-                Console.WriteLine("##vso[task.complete result=SucceededWithIssues;]DONE");
-            }
-        }
-
     }
 }
