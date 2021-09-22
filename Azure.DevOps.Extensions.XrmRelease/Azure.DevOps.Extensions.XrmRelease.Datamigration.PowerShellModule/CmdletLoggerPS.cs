@@ -1,10 +1,11 @@
 ﻿using Capgemini.DataMigration.Core;
 using System;
+using System.Collections.Generic;
 using System.Management.Automation;
 
 namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
 {
-    public class CmdletLoggerPS : ILogger
+    public class CmdletLoggerPS : CmdletLoggerBase, ILogger
     {
         private readonly PSCmdlet _cmdlet;
         private readonly bool _treatWarningsAsErrors;
@@ -15,32 +16,36 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
             _cmdlet = cmdlet;
         }
 
-        public void LogError(string message)
+        public override void LogError(string message)
         {
-            LogError(message, new Exception(message));
+            LogError($"##vso[task.logissue type=error]{message}", new Exception(message));
         }
 
-        public void LogError(string message, Exception ex)
+        public override void LogError(string message, Exception ex)
         {
+            this.Errors.Add(message);
             _cmdlet.WriteError(new ErrorRecord(ex, message, ErrorCategory.SyntaxError, _cmdlet));
         }
 
-        public void LogInfo(string message)
+        public override void LogInfo(string message)
         {
             _cmdlet.Host.UI.WriteLine(message);
         }
 
-        public void LogVerbose(string message)
+        public override void LogVerbose(string message)
         {
             _cmdlet.WriteVerbose(message);
         }
 
-        public void LogWarning(string message)
+        public override void LogWarning(string message)
         {
             if (_treatWarningsAsErrors)
                 LogError(message);
             else
-                _cmdlet.WriteWarning(message);
+            {
+                this.Warnings.Add(message);
+                _cmdlet.WriteWarning($"##vso[task.logissue type=warning]{message}");
+            }
         }
     }
 }

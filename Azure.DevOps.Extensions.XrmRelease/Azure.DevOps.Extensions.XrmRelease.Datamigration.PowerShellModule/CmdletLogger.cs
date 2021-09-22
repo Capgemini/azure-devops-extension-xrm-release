@@ -1,10 +1,11 @@
 ﻿using Capgemini.DataMigration.Core;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 
 namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
 {
-    public class CmdletLogger : ILogger
+    public class CmdletLogger : CmdletLoggerBase, ILogger
     {
         private readonly log4net.ILog _logger;
         private readonly bool _treatWarningsAsErrors;
@@ -31,33 +32,37 @@ namespace Azure.DevOps.Extensions.XrmRelease.Datamigration.PowerShellModule
             _logger.Debug($"{eventType}:{message}", ex);
         }
 
-        public void LogError(string message)
+        public override void LogError(string message)
         {
-            _logger.Error(message);
+            this.Errors.Add(message);
+            _logger.Error($"##vso[task.logissue type=error]{message}");
         }
 
-        public void LogError(string message, Exception ex)
+        public override void LogError(string message, Exception ex)
         {
-            _logger.Error(message, ex);
+            this.Errors.Add(message);
+            _logger.Error($"##vso[task.logissue type=error]{message}{ex}", ex);
         }
 
-        public void LogInfo(string message)
+        public override void LogInfo(string message)
         {
             _logger.Info(message);
         }
 
-        public void LogVerbose(string message)
+        public override void LogVerbose(string message)
         {
             _logger.Debug(message);
         }
 
-        public void LogWarning(string message)
+        public override void LogWarning(string message)
         {
             if (_treatWarningsAsErrors)
                 LogError(message);
             else
-                _logger.Warn(message);
+            {
+                this.Warnings.Add(message);
+                _logger.Warn($"##vso[task.logissue type=warning]{message}");
+            }
         }
-
     }
 }

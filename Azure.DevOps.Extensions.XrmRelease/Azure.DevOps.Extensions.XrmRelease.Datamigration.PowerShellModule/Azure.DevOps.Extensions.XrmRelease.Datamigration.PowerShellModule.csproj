@@ -135,6 +135,7 @@
     <Compile Include="BusinessLogic\config\ConnectionHelper.cs" />
     <Compile Include="BusinessLogic\Dynamics365DataManager.cs" />
     <Compile Include="CmdletLogger.cs" />
+    <Compile Include="CmdletLoggerBase.cs" />
     <Compile Include="CmdletLoggerPS.cs" />
     <Compile Include="Cmdlets\DataExporterCmdlet.cs" />
     <Compile Include="Cmdlets\DataImporterCmdlet.cs" />
